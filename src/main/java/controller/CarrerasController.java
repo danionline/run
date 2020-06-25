@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.pojo.Carrera;
-import modelo.dao.CarreraDao;
+import modelo.Carrera;
+import modelo.CarreraDao;
+
 
 /**
  * Servlet implementation class CarrerasController
  */
-@WebServlet("/inicio")
+@WebServlet("/carreras")
 public class CarrerasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +37,9 @@ public class CarrerasController extends HttpServlet {
 		// TODO Auto-generated method stub
 		CarreraDao dao = CarreraDao.getInstance();
 
-		ArrayList<Carrera> carreras = dao.getAll();
+		ArrayList<Carrera> carreras = null;
+		carreras = dao.getAll();
+	
 
 		request.setAttribute("carreras", carreras);
 

@@ -1,4 +1,4 @@
-package model.pojo;
+package modelo;
 
 public class Carrera {
 
