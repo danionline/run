@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import categorias.Categoria;
 import modelo.ConnectionManager;
 
 public class ProductoDAOImpl implements ProductoDAO {

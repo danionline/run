@@ -2,6 +2,8 @@ package producto;
 
 import java.util.ArrayList;
 
+import categorias.Categoria;
+
 public class Producto {
 
 	private int id;

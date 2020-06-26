@@ -7,9 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.ConnectionManager;
+import  org.apache.log4j.Logger; 
 
 public class CategoriaDAOImpl implements CateoriaDAO {
 
+	
+	private   final  static  Logger  LOG  =  Logger.getLogger (CategoriaDAOImpl.class );
 	private static CategoriaDAOImpl INSTANCE = null;
 
 	private CategoriaDAOImpl() {
@@ -37,13 +40,15 @@ public class CategoriaDAOImpl implements CateoriaDAO {
 			  PreparedStatement pst = conexion.prepareStatement(SQL_GET_ALL);
 			  ResultSet rs = pst.executeQuery();
 		) {
-
+			LOG.debug(pst);
 			while (rs.next()) {
 				registros.add(mapper(rs));
+				
 			} // while
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOG.error(e);
 		}
 		return registros;
 

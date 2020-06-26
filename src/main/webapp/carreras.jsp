@@ -5,35 +5,6 @@
 
 
 
-<!doctype html>
-<html lang="es">
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- fontawesome 5 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
-
-
-<!-- Custom CSS -->
-<link rel="stylesheet" href="css/styles.css">
-
-
-
-<title>Corredores</title>
-</head>
-
-<body>
-	<div class="container">
-
 		<jsp:include page="includes/cabecera.jsp">
 		<jsp:param value="titulo" name="carreras"/>
 		<jsp:param value="pagina" name="carreras"/>
@@ -41,7 +12,7 @@
 
 
 
-		<h1 align="center">Tabla de las carreras</h1>
+		
 		<table class="table">
 			<thead class="bg-primary">
 
@@ -69,9 +40,6 @@
 			</tbody>
 		</table>
 		<%@include file="includes/pie.jsp"%>
-	</div>
 
 
-</body>
 
-</html>

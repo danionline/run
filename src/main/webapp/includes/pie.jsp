@@ -1,4 +1,4 @@
-</main>
+
 
 
 
@@ -19,8 +19,9 @@
         });
     </script>  
     
-     <div class="bg bg-primary" align="center" >
-        <footer class="container p-2" >
+     <div class="bg bg-light" align="center" >
+        <footer class="container p-2 bg-ligth" >
+         <img src="imagenes/logolion.jpg" class="imagen" alt="logo">
             <p>&copy;  CompanyRUNNERS 2020-2022</p>
         </footer>
      </div>  

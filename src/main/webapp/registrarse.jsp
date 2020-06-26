@@ -32,60 +32,55 @@
 	<div class="container">
 
 
-		<jsp:include page="/includes/cabecera.jsp" >
-		<jsp:param value="titulo" name="inicio"/>
-		<jsp:param value="pagina" name="inicio"/>
+		<jsp:include page="/includes/cabecera.jsp">
+			<jsp:param value="titulo" name="inicio" />
+			<jsp:param value="pagina" name="inicio" />
 		</jsp:include>
-		
+
 		<div class="alert alert-primary alert-dismissible fade show"
 			role="alert">
 			<strong>Mensaje</strong> ${mensaje}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		
-		
-		
-		
+
+
+
+
 
 		<h1 align=center>Registrarse en Runners</h1>
 
 		<form action="login" method="post">
-			
-			
-    			
-        
-			<label for="textlabel" class="col-sm-12 col-form-label">Ide de Usuario</label>
-		   
-		   <input class="form-control" name="ide" type="text" placeholder="ide de Usuario"> 
-		   
-		   <label for="textlabel" class="col-sm-12 col-form-label">Nombre de Usuario</label>
-		   
-		   <input class="form-control" name="nombre" type="text" placeholder="Nombre de Usuario"> 
-		   		   
-		   <label for="textlabel" class="col-sm-12 col-form-label">Contraseña</label> 
-		   
-		   <input class="form-control" name="conse" type="password" placeholder="Contraseña de Usuario">
-				
-		
-				<label for="textlabel" class="col-sm-12 col-form-label">Fotografia de Usuario</label>
-				
-				<input class="form-control" type="file" name="imagen">
-				<br>
-				
-				
-			
-				<button type="submit" class="btn btn-primary mb-2">Registrarse</button>
-				
-				</form>
-				
-		
-				
-				
 
-		
-	
+
+
+
+
+
+			<input class="form-control" name="ide" type="text"
+				placeholder="ide de Usuario"> 
+			<br>	
+			<input class="form-control"
+				name="nombre" type="text" placeholder="Nombre de Usuario">
+			<br>	
+			<input	class="form-control" name="conse" type="password" placeholder="Contraseña de Usuario"> 
+			<br>
+			<input	class="form-control" type="file" name="imagen"> <br>
+			<br>
+
+
+			<button type="submit" class="btn btn-dark mb-2">Registrarse</button>
+
+		</form>
+
+
+
+
+
+
+
 
 
 		<%@include file="/includes/pie.jsp"%>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import categorias.CategoriaDAOImpl;
 import categorias.Categoria;
 
@@ -24,6 +26,8 @@ public class InicioController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
+	
+	private   final  static  Logger  LOG  =  Logger.getLogger (InicioController.class );
 	private static final ProductoDAO productoDAO = ProductoDAOImpl.getInstance();
 	private static final CategoriaDAOImpl categoriaDAO = CategoriaDAOImpl.getInstance();
       
@@ -50,7 +54,7 @@ public class InicioController extends HttpServlet {
 		ArrayList<Categoria> categorias= new ArrayList<Categoria>();
 		
 		categorias= categoriaDAO.getAll();
-		
+		LOG.trace("exito");
 		if ( paramIdCategoria != null ) {
 			
 			int idCategoria = Integer.parseInt(paramIdCategoria);

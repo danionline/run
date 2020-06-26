@@ -22,40 +22,55 @@
 
 
 
-    <title> ${param.title} | Runners</title>
+    <title> ${param.title} | Supermercado</title>
   </head>
   <body onload="init()">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-primary fixed-top bg-primary bg-dark">
         <!-- logo -->
-        <a class="navbar-brand " href="inicio.html">
-            <i class="fas fa-shopping-cart"></i>
+        <a class="navbar-brand" href="index.html">
+            <img src="imagenes/logolion.jpg" class="imagen"></img>
         </a>
 
+       
       
         <!-- lista enlaces -->
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"  >
               <a class="nav-link ${ ( 'inicio' eq param.pagina ) ? 'active' : '' }" href="index.jsp">Inicio</a>
             </li>
             
-         
             
+           
+           
+           
+             
+             
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"  >
+              <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras.jsp">Carreras</a>
+            </li>
+            
+             
+            
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"  >
+              <a class="nav-link ${ ( 'registrarse' eq param.pagina ) ? 'active' : '' }" href="registrarse.jsp">Registrarse</a>
+            </li>
+           
+           
+       
             <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+		        <a class="nav-link dropdown-toggle navbar-primary" href="#" id="navbarDropdown " role="button" 
 		           data-toggle="dropdown" aria-haspopup="true" 
 		           aria-expanded="false">Categorias</a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		        	<c:forEach items="${categorias}" var="cat">
-		          		<a class="dropdown-item" href="inicio?categoria=${cat.id}">${cat.id}>${cat.nombre}</a>
-		          		
-		          	</c:forEach>			          
+		        	<c:forEach items="${categorias}" var="categoria">
+		          		<a class="dropdown-item" href="inicio?idCategoria=${categoria.id}">${categoria.nombre}</a>
+		          	</c:forEach>		          
 		        </div>
 		    </li>
             
-            <li class="nav-item"  >
-              <a class="nav-link ${ ( 'ejemplos' eq param.pagina ) ? 'active' : '' }" href="ejemplos.jsp">Ejemplos</a>
-            </li>
             
             <!-- opciones cuando el usuario esta Logeado -->
             
@@ -71,7 +86,7 @@
             </c:if>	           
         
             
-          </ul>
+      
        
         
          <span class="form-inline">
@@ -88,10 +103,8 @@
         
         </div>
       </nav>
-      <main class="container">
-
-    
-      	
+      
+      <main role="main" class="container">
+   			
       	<jsp:include page="alerta.jsp"></jsp:include>
-
       
