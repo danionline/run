@@ -1,8 +1,8 @@
-package producto;
+package com.renedo.runners.producto;
 
 import java.util.ArrayList;
 
-import categorias.Categoria;
+import com.renedo.runners.categorias.Categoria;
 
 public class Producto {
 

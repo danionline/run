@@ -1,4 +1,4 @@
-package categorias;
+package com.renedo.runners.categorias;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

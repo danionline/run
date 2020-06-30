@@ -1,23 +1,23 @@
 
 
-package categorias;
+package com.renedo.runners.categorias;
 
 public class Categoria {
 
-	private int id;
+	private String id;
 	private String nombre;
 	
 	public Categoria() {
 		super();
-		this.id = 0;
+		this.id = "";
 		this.nombre = "";
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

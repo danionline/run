@@ -1,4 +1,4 @@
-package categorias;
+package com.renedo.runners.categorias;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modelo.ConnectionManager;
-import  org.apache.log4j.Logger; 
+import  org.apache.log4j.Logger;
 
-public class CategoriaDAOImpl implements CateoriaDAO {
+import com.renedo.runners.modelo.ConnectionManager; 
+
+public class CategoriaDAOImpl implements CategoriaDAO {
 
 	
 	private   final  static  Logger  LOG  =  Logger.getLogger (CategoriaDAOImpl.class );
@@ -78,7 +79,7 @@ public class CategoriaDAOImpl implements CateoriaDAO {
 
 	private Categoria mapper(ResultSet rs) throws SQLException {
 		Categoria c = new Categoria();
-		c.setId(rs.getInt("id"));
+		c.setId(rs.getString("id"));
 		c.setNombre(rs.getString("nombre"));
 		return c;
 	}

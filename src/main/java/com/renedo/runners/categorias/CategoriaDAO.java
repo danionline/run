@@ -1,10 +1,10 @@
-package categorias;
+package com.renedo.runners.categorias;
 
 import java.util.ArrayList;
 
-import producto.CrudAble;
+import com.renedo.runners.producto.CrudAble;
 
-public interface CateoriaDAO extends CrudAble<Categoria> {
+public interface CategoriaDAO extends CrudAble<Categoria> {
 
 	ArrayList<Categoria> getAll();
 

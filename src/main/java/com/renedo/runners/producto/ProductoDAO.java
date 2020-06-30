@@ -1,4 +1,4 @@
-package producto;
+package com.renedo.runners.producto;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public interface ProductoDAO extends CrudAble<Producto> {
 
-	
+	ArrayList<Producto> getAll();
 	ArrayList<Producto> getAllByNombre( String nombre );
 	
 	ArrayList<Producto> getAllRangoPrecio( int precioMinimo, int precioMaximo );

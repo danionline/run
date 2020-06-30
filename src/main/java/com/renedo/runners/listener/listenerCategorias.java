@@ -1,4 +1,4 @@
-package listener;
+package com.renedo.runners.listener;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextAttributeEvent;
@@ -7,9 +7,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import categorias.*;
-import categorias.Categoria;
-import categorias.CategoriaDAOImpl;
+import com.renedo.runners.categorias.*;
 
 /**
  * Application Lifecycle Listener implementation class listenerCategorias

@@ -12,10 +12,10 @@
 <body>
 	<div class="container">
 	<h1 align="center">Tienda de Productos</h1>
-	<p>${mensaje}</p>
+	
 
 
-	<a href="producto">Ir a formulario para Crear Nuevo Producto</a>
+	
 
 	<%
 		// Podemos usar el ${}  EL - Expresion Lenguage en los JSPs

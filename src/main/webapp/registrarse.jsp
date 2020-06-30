@@ -71,7 +71,7 @@
 			<br>
 
 
-			<button type="submit" class="btn btn-dark mb-2">Registrarse</button>
+			<button type="submit" class="btn btn-success mb-2">Registrarse</button>
 
 		</form>
 

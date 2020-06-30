@@ -1,4 +1,4 @@
-package controller;
+package com.renedo.runners.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import categorias.CategoriaDAOImpl;
-import categorias.Categoria;
-
-import producto.Producto;
-import producto.ProductoDAO;
-import producto.ProductoDAOImpl;
+import com.renedo.runners.categorias.Categoria;
+import com.renedo.runners.categorias.CategoriaDAOImpl;
+import com.renedo.runners.producto.Producto;
+import com.renedo.runners.producto.ProductoDAO;
+import com.renedo.runners.producto.ProductoDAOImpl;
 
 /**
  * Servlet implementation class InicioController
@@ -49,22 +48,28 @@ public class InicioController extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String cabecera="Tabla de Productos por Categorias";
-		String paramIdCategoria = request.getParameter("categoria");
+		
 		ArrayList<Producto> productos = new ArrayList<Producto> (); 
 		ArrayList<Categoria> categorias= new ArrayList<Categoria>();
-		
 		categorias= categoriaDAO.getAll();
+		
+		
+		String paramIdCategoria=request.getParameter("idCategoria");
+				
+		
+		
+		
 		LOG.trace("exito");
-		if ( paramIdCategoria != null ) {
+		if ( paramIdCategoria!=null) {
 			
-			int idCategoria = Integer.parseInt(paramIdCategoria);
-			productos = productoDAO.getAllByCategoria( idCategoria, 10);
+			int idParamCategoria= Integer.parseInt(paramIdCategoria);
+			productos = productoDAO.getAllByCategoria( idParamCategoria, 10);
 			
 		}else {
 			
 			productos = productoDAO.getLast(10);
 		}
-		
+	
 		request.setAttribute("cabecera",cabecera);
 		request.setAttribute("productos", productos );
 		request.setAttribute("categorias", categorias );		

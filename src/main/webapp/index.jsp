@@ -10,28 +10,7 @@
 
 
 
-	<div class="row-card">
-
-		<c:forEach items="${productos}" var="p">
-
-			<div class="card">
-			
-				<img src="${p.imagen}" class="img-responsive" alt="Cinque Terre">
-
-
-				<div class="card-body">
-					<h5 class="card-title">${p.nombre}</h5>
-					<p class="card-text">${p.precio}Euros.</p>
-					<p>
-						<span class="badge badge-pill badge-primary" class="card-text">${p.categoria.nombre }</span>
-					</p>
-
-				</div>
-			</div>
-		</c:forEach>
-	</div>
-
-
+	
 
 
 

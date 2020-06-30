@@ -1,4 +1,4 @@
-package controller;
+package com.renedo.runners.controller;
 
 public class Alerta {
 

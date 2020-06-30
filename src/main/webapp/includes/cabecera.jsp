@@ -22,14 +22,17 @@
 
 
 
-    <title> ${param.title} | Supermercado</title>
+    <title> ${param.title} | Runners</title>
   </head>
-  <body onload="init()">
-    <nav class="navbar navbar-expand-md navbar-primary fixed-top bg-primary bg-dark">
+  <body onload="init()" >
+
+
+    <nav class="navbar navbar-expand-md  fixed-top bg-primary bg-dark">
         <!-- logo -->
         <a class="navbar-brand" href="index.html">
-            <img src="imagenes/logolion.jpg" class="imagen"></img>
+           <p>${usu.nombre}</p>  
         </a>
+        
 
        
       
@@ -39,7 +42,7 @@
             <li class="nav-item"  >
               <a class="nav-link ${ ( 'inicio' eq param.pagina ) ? 'active' : '' }" href="index.jsp">Inicio</a>
             </li>
-            
+           </ul> 
             
            
            
@@ -48,8 +51,11 @@
              
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"  >
-              <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras.jsp">Carreras</a>
-            </li>
+              <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras">Carreras</a>
+           	</li>
+            	
+            </ul>
+            	
             
              
             
@@ -57,54 +63,43 @@
             <li class="nav-item"  >
               <a class="nav-link ${ ( 'registrarse' eq param.pagina ) ? 'active' : '' }" href="registrarse.jsp">Registrarse</a>
             </li>
+           </ul>
            
+
+  			<ul class="navbar-nav mr-auto">
+            <li class="nav-item"  >
+              <a class="nav-link ${ ( 'iniciarsesion' eq param.pagina ) ? 'active' : '' }" href="iniciarsesion.jsp">Sesion</a>
+            		
+            </li>
+           </ul>
            
+			<ul class="navbar-nav mr-auto">
+            <li class="nav-item"  >
+              <a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' }" href="productos">Productos</a>
+            		
+            </li>
+           </ul>		
        
-            <li class="nav-item dropdown">
+            <div class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle navbar-primary" href="#" id="navbarDropdown " role="button" 
 		           data-toggle="dropdown" aria-haspopup="true" 
 		           aria-expanded="false">Categorias</a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">    
 		        	<c:forEach items="${categorias}" var="categoria">
 		          		<a class="dropdown-item" href="inicio?idCategoria=${categoria.id}">${categoria.nombre}</a>
 		          	</c:forEach>		          
-		        </div>
-		    </li>
-            
+		    	</div>
+		    	</div>
+			            
             
             <!-- opciones cuando el usuario esta Logeado -->
             
-             <c:if test="${ not empty usuario_login }">
-             
-            	<li class="nav-item">
-              		<a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' } "  href="productos">Productos</a>
-            	</li>
-            	<li class="nav-item">
-              		<a class="nav-link ${ ( 'usuario' eq param.pagina ) ? 'active' : '' } "  href="usuario">Usuarios</a>
-            	</li>
-            	
-            </c:if>	           
-        
-            
+     
+        </nav>
+
+    
       
-       
-        
-         <span class="form-inline">
-         	<c:if test="${ empty usuario_login }">
-            	  <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar Sesión</a>
-            </c:if>	  
-            
-            <c:if test="${ not empty usuario_login }">
-            	<span class="badge badge-pill badge-light mr-3">${usuario_login.nombre}</span>
-            	<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
-            </c:if>
-              
-         </span>
-        
-        </div>
-      </nav>
-      
-      <main role="main" class="container">
+      <main role="main" class="container" style="margin-top:100px" >
    			
       	<jsp:include page="alerta.jsp"></jsp:include>
       

@@ -1,4 +1,4 @@
-package modelo;
+package com.renedo.runners.modelo;
 
 public class Usuario {
 

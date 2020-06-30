@@ -1,3 +1,4 @@
+<%@page import="com.renedo.runners.categorias.Categoria"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -21,7 +22,8 @@
 
 
 <div class="row-card">
-
+	
+	
 	<c:forEach items="${productos}" var="p">
 
 		<div class="card">
@@ -34,7 +36,8 @@
 				<h4 class="card-title">
 					<strong>Categorias</strong>
 				</h4>
-				<p class="badge badge-pill badge-primary">${p.categoria.nombre }</p>
+				<p class="badge badge-pill badge-primary"></p>
+     <p class="badge badge-pill badge-primary">${categoria.nombre }</p>
 				<h5 class="card-title">${p.nombre}</h5>
 				<p class="card-text">${p.precio}Euros.</p>
 

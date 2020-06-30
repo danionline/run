@@ -1,49 +1,4 @@
-body {
- height: 50%;
-  margin: 0;
-
-
-
-
-  /* The image used */
-  background-image: url("../imagenes/carretera.jpg");
-  
-   /* Full height */
-  
-
-  /* Center and scale the image nicely */
-    position: relative;
-    opacity: 0.65;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  
-}
-.h1, h1 {
-    font-size: 2.5rem;
-    background: orange;
-    margin-top: 80px;
-
-  	padding-left:  200px;
-  	padding-right: 200px;
-  	margin-left:   20px;
-  	margin-right:  20px;
-
-    
-}
-
-main.container{
-	margin-top: 80px;
 	
-}
-
-
-	.imagen{
-	
-	width:2em;
-	}
-	
-
 
 .row-card{
 	

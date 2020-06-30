@@ -1,4 +1,4 @@
-package controller;
+package com.renedo.runners.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Carrera;
-import modelo.CarreraDao;
+import com.renedo.runners.modelo.Carrera;
+import com.renedo.runners.modelo.CarreraDao;
 
 
 /**

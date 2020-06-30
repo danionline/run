@@ -1,4 +1,4 @@
-package modelo;
+package com.renedo.runners.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

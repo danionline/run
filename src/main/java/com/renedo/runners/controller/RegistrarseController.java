@@ -1,4 +1,4 @@
-package controller;
+package com.renedo.runners.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Usuario;
-import modelo.UsuarioDao;
+import com.renedo.runners.modelo.Usuario;
+import com.renedo.runners.modelo.UsuarioDao;
 
 /**
  * Servlet implementation class RegistrarseController

@@ -1,4 +1,4 @@
-package modelo;
+package com.renedo.runners.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +26,7 @@ public class UsuarioDao {
 
 		ArrayList<Usuario> registros = new ArrayList<Usuario>();
 
-		String sql = "SELECT ide, nombre, contrasena FROM usuario ORDER BY ide DESC; ";
+		String sql = "SELECT  nombre, contrasena FROM usuario; ";
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(sql);
@@ -37,19 +37,18 @@ public class UsuarioDao {
 			while (rs.next()) {
 
 				// recuperar columnas del resultset
-				String id = rs.getString("ide");
+				
 				String nombre = rs.getString("nombre");
 				String conse = rs.getString("contrasena");
-				String imag = rs.getString("imagen");
+			
 
 				// crear pojo con datos del rs
 				Usuario usuario = new Usuario();
 
-				int ide = Integer.parseInt(id);
-				usuario.setId(ide);
+			
 				usuario.setNombre(nombre);
 				usuario.setContrasena(conse);
-				usuario.setImagen(imag);
+			
 				// guardar en ArrayList
 				registros.add(usuario);
 

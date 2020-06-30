@@ -1,4 +1,4 @@
-package producto;
+package com.renedo.runners.producto;
 
 import java.util.ArrayList;
 

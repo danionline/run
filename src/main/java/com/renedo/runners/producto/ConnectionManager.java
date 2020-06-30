@@ -1,4 +1,4 @@
-package producto;
+package com.renedo.runners.producto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

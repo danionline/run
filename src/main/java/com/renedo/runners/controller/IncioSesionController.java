@@ -1,4 +1,4 @@
-package controller;
+package com.renedo.runners.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import modelo.Usuario;
-import modelo.UsuarioDao;
+import com.renedo.runners.modelo.Usuario;
+import com.renedo.runners.modelo.UsuarioDao;
 
 /**
  * Servlet implementation class IncioSesionController
@@ -44,30 +45,37 @@ public class IncioSesionController extends HttpServlet {
 			throws ServletException, IOException {
 		UsuarioDao dao = UsuarioDao.getInstance();
 		ArrayList<Usuario> asuario = null;
-		asuario = dao.getAll();
+		asuario=dao.getAll();
 		Usuario usu = new Usuario();
 		String id="";
 		String mensaje = "";
 
+		
+		
+		HttpSession sesion= request.getSession();
+		
+		
 		try {
-			 id = request.getParameter("ide");
+			
 			String nomb = request.getParameter("nombre");
-			String cons = request.getParameter("conse");
-			String imagen = request.getParameter("imagen");
+			String cons = request.getParameter("contrasena");
+			usu.setNombre(nomb);
+			usu.setContrasena(cons);
 
-			int ide = Integer.parseInt(id);
+			
 			for (Usuario usuario : asuario) {
 
-				if (usuario.getId() == ide) {
+				if (usuario.getNombre().equalsIgnoreCase(nomb) && (usuario.getContrasena().equalsIgnoreCase(cons))){
 
-					mensaje = "usuario esta en la base de datos";
-					usu.setNombre(nomb);
-
-				} else {
-
-					response.sendRedirect("no esta en la base de datos");
-				}
+					mensaje = "Corredor  con exito";
+				}	
+					
+				 
 			}
+				
+				    
+			
+				
 
 		} catch (Exception e) {
 
@@ -77,12 +85,13 @@ public class IncioSesionController extends HttpServlet {
 		} finally {
 
 			// enviar datos a la vista
+			sesion.setMaxInactiveInterval(60*5);
+			sesion.setAttribute("usulogin", usu);
 			
 		
+			request.getRequestDispatcher("includes/cabecera.jsp").forward(request, response);
+
 	
-			request.setAttribute("mensaje", mensaje);
-			request.setAttribute("usu", usu.getNombre());
-			response.sendRedirect("iniciarsesion");
 
 		}
 	}
