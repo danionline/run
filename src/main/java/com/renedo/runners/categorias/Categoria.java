@@ -1,12 +1,11 @@
 
-
 package com.renedo.runners.categorias;
 
 public class Categoria {
 
 	private String id;
 	private String nombre;
-	
+
 	public Categoria() {
 		super();
 		this.id = "";
@@ -33,6 +32,5 @@ public class Categoria {
 	public String toString() {
 		return "Categoria [id=" + id + ", nombre=" + nombre + "]";
 	}
-	
-	
+
 }

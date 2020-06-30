@@ -37,18 +37,16 @@ public class UsuarioDao {
 			while (rs.next()) {
 
 				// recuperar columnas del resultset
-				
+
 				String nombre = rs.getString("nombre");
 				String conse = rs.getString("contrasena");
-			
 
 				// crear pojo con datos del rs
 				Usuario usuario = new Usuario();
 
-			
 				usuario.setNombre(nombre);
 				usuario.setContrasena(conse);
-			
+
 				// guardar en ArrayList
 				registros.add(usuario);
 
@@ -175,14 +173,13 @@ public class UsuarioDao {
 
 			while (rs.next()) {
 
-				
 				u.setId(ide);
 			}
 			pstUpdate.setInt(1, ide);
 			int affedtedRows = pstUpdate.executeUpdate();
 
 			if (affedtedRows == 1) {
-				
+
 			}
 		}
 		return u;

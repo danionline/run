@@ -16,9 +16,8 @@ public class ProductoDAOImpl implements ProductoDAO {
 
 	private static ProductoDAOImpl INSTANCE = null;
 
-	private   final  static  Logger  LOG  =  Logger.getLogger (ProductoDAOImpl.class );
-	
-	
+	private final static Logger LOG = Logger.getLogger(ProductoDAOImpl.class);
+
 	private ProductoDAOImpl() {
 		super();
 	}
@@ -44,45 +43,43 @@ public class ProductoDAOImpl implements ProductoDAO {
 	// excuteUpdate => int numero de filas afectadas
 	// TODO faltan campos imagen y precio
 
-	private final String SQL_CATEGORIA = "SELECT p.id, p.nombre, p.precio , p.imagen ,c.nombre 'nombre_categoria' ,p.id_categoria \n" + 
-			"FROM producto p, categoria c Where p.id_categoria =c.id AND c.id=? LIMIT ? ;";
+	private final String SQL_CATEGORIA = "SELECT p.id, p.nombre, p.precio , p.imagen ,c.nombre 'nombre_categoria' ,p.id_categoria \n"
+			+ "FROM producto p, categoria c Where p.id_categoria =c.id AND c.id=? LIMIT ? ;";
 
 	private final String SQL_INSERT = " INSERT INTO producto (nombre, imagen, precio , id_usuario, id_categoria ) VALUES ( ? , ?, ? , 1, 1 ) ; ";
 	private final String SQL_UPDATE = " UPDATE producto SET nombre = ?, imagen = ?, precio = ? WHERE id = ? ; ";
 
 	private final String SQL_DELETE = " DELETE FROM producto WHERE id = ? ; ";
 
-	private final String SQL_GET="SELECT nombre, precio, imagen FROM producto;";
-	
+	private final String SQL_GET = "SELECT id, nombre, precio, imagen FROM producto;";
+
 	public ArrayList<Producto> getAllByNombre(String nombre) {
 		return null;
 	}
 
 	@Override
-	
 
-		
-		public ArrayList<Producto> getAll() {
-			
-			ArrayList<Producto> registros = new ArrayList<Producto>();
+	public ArrayList<Producto> getAll() {
 
-			try ( Connection conexion = ConnectionManager.getConnection();
-				  PreparedStatement pst = conexion.prepareStatement(SQL_GET);
-				  ResultSet rs = pst.executeQuery();
-			) {
-				LOG.debug(pst);
-				while (rs.next()) {
-					registros.add(mapper(rs));
-					
-				} // while
+		ArrayList<Producto> registros = new ArrayList<Producto>();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-				LOG.error(e);
-			}
-			return registros;
+		try (Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL_GET);
+				ResultSet rs = pst.executeQuery();) {
+			LOG.debug(pst);
+			while (rs.next()) {
+				registros.add(mapper(rs));
 
+			} // while
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error(e);
 		}
+		return registros;
+
+	}
+
 	@Override
 	public Producto getById(int id) throws Exception {
 		Producto registro = new Producto();
@@ -196,30 +193,27 @@ public class ProductoDAOImpl implements ProductoDAO {
 
 	private Producto mapper(ResultSet rs) throws SQLException {
 		Producto p = new Producto();
+		p.setId(rs.getInt("id"));
 		p.setImagen(rs.getString("imagen"));
 		p.setNombre(rs.getString("nombre"));
 		p.setPrecio(rs.getFloat("precio"));
 		return p;
 	}
-	
-	
+
 	@Override
 	public ArrayList<Producto> getAllByCategoria(int idCategoria, int numregistros) {
 
 		ArrayList<Producto> registros = new ArrayList<Producto>();
-	
-		
+
 		try (Connection con = ConnectionManager.getConnection();
-				
-				
+
 				PreparedStatement pst = con.prepareStatement(SQL_CATEGORIA);
-				
 
 		) {
-			pst.setInt(1,idCategoria);
-			pst.setInt(2,numregistros);
+			pst.setInt(1, idCategoria);
+			pst.setInt(2, numregistros);
 			ResultSet rs = pst.executeQuery();
-			
+
 			while (rs.next()) {
 
 				registros.add(mapper(rs));

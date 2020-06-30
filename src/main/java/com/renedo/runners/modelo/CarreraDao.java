@@ -61,14 +61,12 @@ public class CarreraDao {
 		return registros;
 	}
 
-	public boolean buscarId(int ide)throws Exception{
-		
-	
-		
-		String sql="Select id from carrera where id=? ;";
+	public boolean buscarId(int ide) throws Exception {
+
+		String sql = "Select id from carrera where id=? ;";
 		boolean respuesta = false;
-		int id=0;
-		
+		int id = 0;
+
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(sql);
 				ResultSet rs = pst.executeQuery();
@@ -79,17 +77,14 @@ public class CarreraDao {
 
 				// recuperar columnas del resultset
 				id = rs.getInt(ide);
-				//crear pojo con datos del rs
-				if(id==ide) {
-					
-					respuesta=false;
+				// crear pojo con datos del rs
+				if (id == ide) {
+
+					respuesta = false;
+				} else {
+					respuesta = true;
 				}
-				else {
-					respuesta=true;
-				}
-				
-			
-		
+
 			}
 		} catch (Exception e) {
 
@@ -97,7 +92,7 @@ public class CarreraDao {
 		}
 
 		return respuesta;
-		
+
 	}
 
 	public Carrera insertarCarrera(Carrera crs) throws Exception {

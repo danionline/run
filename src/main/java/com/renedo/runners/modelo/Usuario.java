@@ -60,6 +60,4 @@ public class Usuario {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", contraseña=" + contrasena + ", imagen=" + imagen + "]";
 	}
 
-	
-
 }

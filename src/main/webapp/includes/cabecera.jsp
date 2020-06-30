@@ -29,10 +29,11 @@
 
     <nav class="navbar navbar-expand-md  fixed-top bg-primary bg-dark">
         <!-- logo -->
-        <a class="navbar-brand" href="index.html">
-           <p>${usu.nombre}</p>  
+         <a class="navbar-brand" href="index.html">
+        <img style="max-width:55px; margin-top: -7px;"
+             src="imagenes/bird.png">
         </a>
-        
+      
 
        
       
@@ -44,41 +45,32 @@
             </li>
            </ul> 
             
-           
-           
-           
-             
-             
-          <ul class="navbar-nav mr-auto">
+                       
+               	
+         <ul class="navbar-nav mr-auto">
             <li class="nav-item"  >
-              <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras">Carreras</a>
-           	</li>
-            	
-            </ul>
-            	
-            
-             
+              <a class="nav-link ${ ( 'eliminarusuarios' eq param.pagina ) ? 'active' : '' }" href="eliminarusuarios.jsp">Darse de Baja</a>
+            </li>
+           
             
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"  >
               <a class="nav-link ${ ( 'registrarse' eq param.pagina ) ? 'active' : '' }" href="registrarse.jsp">Registrarse</a>
-            </li>
-           </ul>
+            </li>     
            
-
-  			<ul class="navbar-nav mr-auto">
+           
+            <ul class="navbar-nav mr-auto">
             <li class="nav-item"  >
-              <a class="nav-link ${ ( 'iniciarsesion' eq param.pagina ) ? 'active' : '' }" href="iniciarsesion.jsp">Sesion</a>
-            		
-            </li>
-           </ul>
+              <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras">Carreras</a>
+           	</li>
+           
            
 			<ul class="navbar-nav mr-auto">
             <li class="nav-item"  >
               <a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' }" href="productos">Productos</a>
             		
             </li>
-           </ul>		
+           	
        
             <div class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle navbar-primary" href="#" id="navbarDropdown " role="button" 
@@ -90,12 +82,33 @@
 		          	</c:forEach>		          
 		    	</div>
 		    	</div>
-			            
+			</ul>
+           	</ul>
+           	</ul>
+           	</ul>            
             
             <!-- opciones cuando el usuario esta Logeado -->
+          
+            <span class = "form-inline">
+         	<c:if  test = "${ empty usulogin }" >
+            	  <a  class ="btn btn-outline-success my-2 my-sm-0"  href = "iniciarsesion.jsp" >Iniciar Sesión</a >
+            </c:if >	  
             
+            <c:if  test = "${ not empty usulogin }" >
+            	<span  class = " badge badge-pill badge-light mr-3 " > ${usulogin.nombre } </span >
+            	<a  class = "btn btn-outline-success my-2 my-sm-0"  href = "cerrarsesion" >Cerrar Sesión</a >
+    		        
+	         </c:if >
+           </span>
+            
+       
      
-        </nav>
+       
+         
+       
+       
+     	
+  </nav>
 
     
       

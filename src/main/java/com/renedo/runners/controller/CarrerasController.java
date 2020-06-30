@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.renedo.runners.modelo.Carrera;
 import com.renedo.runners.modelo.CarreraDao;
 
-
 /**
  * Servlet implementation class CarrerasController
  */
@@ -34,12 +33,11 @@ public class CarrerasController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		CarreraDao dao = CarreraDao.getInstance();
 
 		ArrayList<Carrera> carreras = null;
 		carreras = dao.getAll();
-	
 
 		request.setAttribute("carreras", carreras);
 
@@ -53,7 +51,7 @@ public class CarrerasController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 	}
 
 }

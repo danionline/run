@@ -1,26 +1,27 @@
 package com.renedo.runners.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.renedo.runners.modelo.Carrera;
-import com.renedo.runners.modelo.CarreraDao;
-import com.renedo.runners.producto.Producto;
-import com.renedo.runners.producto.ProductoDAO;
-import com.renedo.runners.producto.ProductoDAOImpl;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ProductosController
+ * Servlet implementation class CerrarSesion
  */
-@WebServlet("/productos")
-public class ProductosController extends HttpServlet {
+@WebServlet("/cerrarsesion")
+public class CerrarSesion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CerrarSesion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -28,14 +29,12 @@ public class ProductosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProductoDAOImpl dao = ProductoDAOImpl.getInstance();
+		// TODO Auto-generated method stub
 
-		ArrayList<Producto> productos = null;
-		productos = dao.getAll();
+		HttpSession sesion = request.getSession();
+		sesion.invalidate();
 
-		request.setAttribute("productos", productos);
-
-		request.getRequestDispatcher("productos.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
 
@@ -46,8 +45,5 @@ public class ProductosController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// llamar a la base datos para conseguir los productos
-
 	}
-
 }

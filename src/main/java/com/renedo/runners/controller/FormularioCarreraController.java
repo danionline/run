@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.renedo.runners.modelo.Carrera;
 import com.renedo.runners.modelo.CarreraDao;
 
-
 /**
  * Servlet implementation class FormularioCarreraController
  */
@@ -45,11 +44,8 @@ public class FormularioCarreraController extends HttpServlet {
 			throws ServletException, IOException {
 
 		CarreraDao dao = CarreraDao.getInstance();
-	
-		
+
 		Carrera crs = new Carrera();
-		
-		
 
 		String mensaje = "";
 
@@ -58,28 +54,22 @@ public class FormularioCarreraController extends HttpServlet {
 		String tiem = request.getParameter("tiempo");
 		String dist = request.getParameter("distancia");
 
-		//parametro de la vista insertar
-	
+		// parametro de la vista insertar
+
 		String idec = request.getParameter("idcrear");
-		int idcrear=Integer.parseInt(idec);
-		
-		
-		
+		int idcrear = Integer.parseInt(idec);
+
 		int ide = Integer.parseInt(idint);
 		int tiempo = Integer.parseInt(tiem);
 		int distancia = Integer.parseInt(dist);
-		
-		
-		
+
 		try {
 
-			
-	
-			//validacion del nombre
+			// validacion del nombre
 			if (nomb.length() >= 1 && nomb.length() <= 12) {
 
-					///editar 
-				if (dao.buscarId(ide)!=true) {
+				/// editar
+				if (dao.buscarId(ide) != true) {
 					mensaje = "Corredor modificado con exito";
 					crs.setId(ide);
 					crs.setNombre(nomb);
@@ -87,25 +77,25 @@ public class FormularioCarreraController extends HttpServlet {
 					crs.setDistancia(distancia);
 
 					dao.modificarCarrera(crs, ide);
-				}else {
-					mensaje="no identificador encontrado";
+				} else {
+					mensaje = "no identificador encontrado";
 				}
-				
-				///insertar
-			
-				if(idcrear==0) {
 
-						crs.setId(ide);
-						crs.setNombre(nomb);
-						crs.setTiempo(tiempo);
-						crs.setDistancia(distancia);
+				/// insertar
 
-						dao.insertarCarrera(crs);
+				if (idcrear == 0) {
 
-						mensaje = "Corredor guardado con exito";
-					}
+					crs.setId(ide);
+					crs.setNombre(nomb);
+					crs.setTiempo(tiempo);
+					crs.setDistancia(distancia);
+
+					dao.insertarCarrera(crs);
+
+					mensaje = "Corredor guardado con exito";
+				}
 			}
-			
+
 		} catch (Exception e) {
 
 			mensaje = "Lo sentimos pero hemos tenido una Excepcion " + e.getMessage();

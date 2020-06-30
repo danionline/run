@@ -8,8 +8,8 @@
 	<jsp:param name="title" value="Inicio" />
 </jsp:include>
 
-
-
+<h2 sytle ="margin-left:20px;"/> RUNNERS BIRDS
+<img style="margin-top: -2px; margin-bottom: 12px; "src="imagenes/bird.png"/>
 	
 
 

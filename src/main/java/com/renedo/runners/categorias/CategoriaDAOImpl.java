@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import  org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
-import com.renedo.runners.modelo.ConnectionManager; 
+import com.renedo.runners.modelo.ConnectionManager;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 
-	
-	private   final  static  Logger  LOG  =  Logger.getLogger (CategoriaDAOImpl.class );
+	private final static Logger LOG = Logger.getLogger(CategoriaDAOImpl.class);
 	private static CategoriaDAOImpl INSTANCE = null;
 
 	private CategoriaDAOImpl() {
@@ -34,17 +33,16 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	@Override
 	public ArrayList<Categoria> getAll() {
-		
+
 		ArrayList<Categoria> registros = new ArrayList<Categoria>();
 
-		try ( Connection conexion = ConnectionManager.getConnection();
-			  PreparedStatement pst = conexion.prepareStatement(SQL_GET_ALL);
-			  ResultSet rs = pst.executeQuery();
-		) {
+		try (Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL_GET_ALL);
+				ResultSet rs = pst.executeQuery();) {
 			LOG.debug(pst);
 			while (rs.next()) {
 				registros.add(mapper(rs));
-				
+
 			} // while
 
 		} catch (Exception e) {

@@ -34,36 +34,32 @@ public class EliminarController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// <td><a href="producto-eliminar?id=${p.id}">ELIMINAR</a></td>
-				// recoger parametro
-				String parametroId = request.getParameter("ide");
-				int id = Integer.parseInt(parametroId);
-				
-				// llamr modelo
-				UsuarioDao dao = UsuarioDao.getInstance();
-				String mensaje  = "";
-				Usuario u= new Usuario();
-				
-				try {
-					u = dao.eliminarUsuario(id);
-					mensaje = "Eliminado con exito el usuario " ;
-					if(u.getId()!=id) {
-						mensaje="No se encuentra el usuario en la base de datos";
-					}
-				} catch (Exception e) {
-					mensaje = "Error " + e.getMessage();
-					e.printStackTrace();
-				}finally {
-				
-					// guardar datos en session para el mensaje de la vista
-					request.setAttribute("mensaje", mensaje );
-					
-					// pedimos al cliente que realize una segunda REQUEST
-					request.getRequestDispatcher("eliminarusuarios.jsp").forward(request, response);	
-				}
-				
-			
-			
-			
+		// recoger parametro
+		String parametroId = request.getParameter("ide");
+		int id = Integer.parseInt(parametroId);
+
+		// llamr modelo
+		UsuarioDao dao = UsuarioDao.getInstance();
+		String mensaje = "";
+		Usuario u = new Usuario();
+
+		try {
+			u = dao.eliminarUsuario(id);
+			mensaje = "Eliminado con exito el usuario ";
+			if (u.getId() != id) {
+				mensaje = "No se encuentra el usuario en la base de datos";
+			}
+		} catch (Exception e) {
+			mensaje = "Error " + e.getMessage();
+			e.printStackTrace();
+		} finally {
+
+			// guardar datos en session para el mensaje de la vista
+			request.setAttribute("mensaje", mensaje);
+
+			// pedimos al cliente que realize una segunda REQUEST
+			request.getRequestDispatcher("eliminarusuarios.jsp").forward(request, response);
+		}
 
 	}
 
@@ -74,5 +70,5 @@ public class EliminarController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		}
+	}
 }

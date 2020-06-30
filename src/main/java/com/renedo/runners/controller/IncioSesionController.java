@@ -45,53 +45,45 @@ public class IncioSesionController extends HttpServlet {
 			throws ServletException, IOException {
 		UsuarioDao dao = UsuarioDao.getInstance();
 		ArrayList<Usuario> asuario = null;
-		asuario=dao.getAll();
+		asuario = dao.getAll();
 		Usuario usu = new Usuario();
-		String id="";
-		String mensaje = "";
+		String id = "";
 
-		
-		
-		HttpSession sesion= request.getSession();
-		
-		
+		boolean usuariosi = false;
+
+		HttpSession sesion = request.getSession();
+
 		try {
-			
+
 			String nomb = request.getParameter("nombre");
 			String cons = request.getParameter("contrasena");
 			usu.setNombre(nomb);
 			usu.setContrasena(cons);
 
-			
 			for (Usuario usuario : asuario) {
 
-				if (usuario.getNombre().equalsIgnoreCase(nomb) && (usuario.getContrasena().equalsIgnoreCase(cons))){
+				if (usuario.getNombre().equalsIgnoreCase(nomb) & (usuario.getContrasena().equalsIgnoreCase(cons))) {
 
-					mensaje = "Corredor  con exito";
-				}	
-					
-				 
+					usuariosi = true;
+				}
+
 			}
-				
-				    
-			
-				
+			if (usuariosi == false) {
+
+				sesion.invalidate();
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} else {
+				sesion.setMaxInactiveInterval(60 * 5);
+				sesion.setAttribute("usulogin", usu);
+
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+
+			}
 
 		} catch (Exception e) {
 
-			mensaje = "Lo sentimos pero hemos tenido una Excepcion " + e.getMessage();
+			e.getMessage();
 			e.printStackTrace();
-
-		} finally {
-
-			// enviar datos a la vista
-			sesion.setMaxInactiveInterval(60*5);
-			sesion.setAttribute("usulogin", usu);
-			
-		
-			request.getRequestDispatcher("includes/cabecera.jsp").forward(request, response);
-
-	
 
 		}
 	}

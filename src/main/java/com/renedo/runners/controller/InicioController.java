@@ -22,61 +22,58 @@ import com.renedo.runners.producto.ProductoDAOImpl;
  */
 @WebServlet("/inicio")
 public class InicioController extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	
-	private   final  static  Logger  LOG  =  Logger.getLogger (InicioController.class );
+
+	private final static Logger LOG = Logger.getLogger(InicioController.class);
 	private static final ProductoDAO productoDAO = ProductoDAOImpl.getInstance();
 	private static final CategoriaDAOImpl categoriaDAO = CategoriaDAOImpl.getInstance();
-      
-   
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doProcess(request, response);
 	}
-	
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String cabecera="Tabla de Productos por Categorias";
-		
-		ArrayList<Producto> productos = new ArrayList<Producto> (); 
-		ArrayList<Categoria> categorias= new ArrayList<Categoria>();
-		categorias= categoriaDAO.getAll();
-		
-		
-		String paramIdCategoria=request.getParameter("idCategoria");
-				
-		
-		
-		
+
+	private void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String cabecera = "Tabla de Productos por Categorias";
+
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+		categorias = categoriaDAO.getAll();
+
+		String paramIdCategoria = request.getParameter("idCategoria");
+
 		LOG.trace("exito");
-		if ( paramIdCategoria!=null) {
-			
-			int idParamCategoria= Integer.parseInt(paramIdCategoria);
-			productos = productoDAO.getAllByCategoria( idParamCategoria, 10);
-			
-		}else {
-			
+		if (paramIdCategoria != null) {
+
+			int idParamCategoria = Integer.parseInt(paramIdCategoria);
+			productos = productoDAO.getAllByCategoria(idParamCategoria, 10);
+
+		} else {
+
 			productos = productoDAO.getLast(10);
 		}
-	
-		request.setAttribute("cabecera",cabecera);
-		request.setAttribute("productos", productos );
-		request.setAttribute("categorias", categorias );		
+
+		request.setAttribute("cabecera", cabecera);
+		request.setAttribute("productos", productos);
+		request.setAttribute("categorias", categorias);
 		request.getRequestDispatcher("categoria.jsp").forward(request, response);
-		
-		
+
 	}
-	
 
 }
