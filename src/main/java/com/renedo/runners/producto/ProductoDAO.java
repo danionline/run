@@ -21,7 +21,10 @@ public interface ProductoDAO extends CrudAble<Producto> {
 
 	ArrayList<Producto> getLast(int i);
 	
+	
+	Producto insert(Producto pojo) throws Exception;
 	Producto delete(int id) throws Exception;
 	Producto getById(int id) throws Exception;
+	
 
 }

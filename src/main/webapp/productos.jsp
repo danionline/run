@@ -9,11 +9,8 @@
 </jsp:include>
 
 
-<body>
-	<div class="container">
-	<h1 align="center">Tienda de Productos</h1>
-	
 
+	<h1 align="center">Tienda de Productos</h1>
 
 	
 
@@ -38,15 +35,17 @@
 		<tbody>
 			<c:forEach items="${productos}" var="p">
 				<tr>
+				
 					<td>${p.id}</td> <% // no hace falta usar el getter p.id == p.getId() %>
 					<td>${p.nombre}</td>
 					<td>${p.precio} &euro;</td>
 					<td><img src="${p.imagen}"  class="img-thumbnail" alt="imagen..."></td>
 					<td>
-						<a href="producto?id=${p.id}" class="mr-4"> <i class="far fa-edit fa-2x" title="Editar Producto"></i></a>
+						<a href="creareditarproducto.jsp" class="mr-4"><i class="fa fa-pencil-square fa-2x" style=" color:green" title="Crear Producto"></i></a>
+						<a href="creareditarproducto.jsp" class="mr-4"> <i class="far fa-edit fa-2x" title="Editar Producto"></i></a>
 						<a href="producto-eliminar?id=${p.id}"
 						   onclick="confirmar('${p.nombre}')" 
-						   ><i class="fas fa-trash fa-2x" title="Eliminar Producto"></i></a>
+						   ><i class="fas fa-trash fa-2x" style=" color:yellow" title="Eliminar Producto"></i></a>
 					</td>
 				</tr>
 			</c:forEach>

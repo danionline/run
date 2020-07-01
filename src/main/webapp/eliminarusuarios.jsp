@@ -32,7 +32,7 @@
 		<form action="eliminar" method="get">
 				
 				<input type="text" name="ide" value="">
-			
+				
      			<button type="submit" class="btn btn-warning mb-2">Eliminar</button>
 				</form>
 			

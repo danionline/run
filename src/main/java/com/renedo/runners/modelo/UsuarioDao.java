@@ -161,8 +161,8 @@ public class UsuarioDao {
 
 	public Usuario eliminarUsuario(int ide) throws Exception {
 		Usuario u = new Usuario();
-		String sqldelete = "DELETE FROM usuario WHERE ide = ? ;";
-		String sqlselect = "SELECT ide, nombre, contrasena, imagen FROM usuario ORDER BY ide DESC; ";
+		String sqldelete = "DELETE FROM usuario WHERE id_usuario = ? ;";
+		String sqlselect = "SELECT id_usuario, nombre, contrasena, imagen FROM usuario ORDER BY id_usuario DESC; ";
 		try (Connection con = ConnectionManager.getConnection();
 
 				PreparedStatement pst = con.prepareStatement(sqlselect);
