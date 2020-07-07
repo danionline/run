@@ -11,6 +11,7 @@ public class Producto {
 	private String imagen;
 	private float precio;
 	private Categoria categoria;
+	
 
 	public Producto() {
 		super();
@@ -60,6 +61,11 @@ public class Producto {
 
 	public Categoria getCategoria() {
 		return categoria;
+	}
+	
+	public int getCategoriaId() {
+		
+		return categoria.getId();
 	}
 
 	public void setCategoria(Categoria categoria) {

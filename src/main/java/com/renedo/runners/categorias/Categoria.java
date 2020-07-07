@@ -3,20 +3,20 @@ package com.renedo.runners.categorias;
 
 public class Categoria {
 
-	private String id;
+	private int id;
 	private String nombre;
 
 	public Categoria() {
 		super();
-		this.id = "";
+		this.id = 0;
 		this.nombre = "";
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -33,4 +33,5 @@ public class Categoria {
 		return "Categoria [id=" + id + ", nombre=" + nombre + "]";
 	}
 
+	
 }

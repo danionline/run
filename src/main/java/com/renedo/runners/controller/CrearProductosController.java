@@ -35,10 +35,23 @@ public class CrearProductosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	
+		ProductoDAOImpl dao = ProductoDAOImpl.getInstance();
 
+		Producto producto = new Producto();
+		
+		try {
+			
+			producto = dao.getById(producto.getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+		
+		request.setAttribute("producto",producto);
+		request.getRequestDispatcher("productos").forward(request, response);
+	}
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -59,22 +72,28 @@ public class CrearProductosController extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			float precio = Float.parseFloat(request.getParameter("precio"));
 			String imagen = request.getParameter("imagen");
+			int idcategoria = Integer.parseInt(request.getParameter("id"));
 			
+			/// rellenar el objeto con los datos del formulario
 			
-			/// insertar
-			producto.setId(idint);
 			producto.setNombre(nombre);
 			producto.setPrecio(precio);
 			producto.setImagen(imagen);
+			categoria.setId(idcategoria);
 			producto.setCategoria(categoria);
-
+			
+			///comprobar el ide del producto para saber si hay uno nuevo o modificarlo
+			if(producto.getId()==0) {
+			
+			producto.setId(idint);	
 			dao.insert(producto);
 			mensaje = "Producto guardado con exito";
 			
 
 			
 			///modificar
-			if (producto.getId() == idint) {
+			}else {
+			
 				dao.update(producto);
 				mensaje = "producto esta editado con exito";
 			}

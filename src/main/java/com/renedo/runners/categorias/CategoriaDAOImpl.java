@@ -77,7 +77,7 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
 	private Categoria mapper(ResultSet rs) throws SQLException {
 		Categoria c = new Categoria();
-		c.setId(rs.getString("id"));
+		c.setId(rs.getInt("id"));
 		c.setNombre(rs.getString("nombre"));
 		return c;
 	}
