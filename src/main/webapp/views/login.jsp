@@ -7,11 +7,11 @@
 	<form action="login" method="post" class="form-login" onsubmit="cifrar()">
 	
 	 	<div class="form-group">
-			<input type="text" name="nombre" value="pepe" placeholder="Tu Nombre"  class="form-control">
+			<input type="text" name="nombre" value="dana" placeholder="Tu Nombre"  class="form-control">
 		</div>
 		
 		<div class="form-group">
-			<input type="password" id="pass" value="123456" name="pass" placeholder="Tu Contraseña"  class="form-control">
+			<input type="password" id="pass" value="222" name="pass" placeholder="Tu Contraseña"  class="form-control">
 		</div>
 		
 		<div class="form-group">

@@ -90,25 +90,7 @@
            	</ul>
            	</ul>            
             
-            <!-- opciones cuando el usuario esta Logeado -->
-                 <c:if test="${ not empty sessionScope.usuario_login }">
-             
-            	<li class="nav-item">
-              		<a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' } "  href="productos">Productos</a>
-            	</li>
-            	<li class="nav-item">
-              		<a class="nav-link ${ ( 'categorias' eq param.pagina ) ? 'active' : '' } "  href="categoria">Categorias</a>
-            	</li>
-            	<li class="nav-item">
-              		<a class="nav-link ${ ( 'usuario' eq param.pagina ) ? 'active' : '' } "  href="usuario">Usuarios</a>
-            	</li>
-            	
-            </c:if>	  
-                    
-          </ul>
-       
         
-         <span class="form-inline">
          
          	
          
