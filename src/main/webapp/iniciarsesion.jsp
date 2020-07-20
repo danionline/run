@@ -8,7 +8,7 @@
 
 
 
-	<jsp:include page="/includes/cabecera.jsp" >
+	<jsp:include page="/include/cabecera.jsp" >
 		<jsp:param value="titulo" name="inicio"/>
 		<jsp:param value="pagina" name="inicio"/>
 		</jsp:include>
@@ -32,6 +32,6 @@
 	
 	
 		
-	<%@include file="/includes/pie.jsp"%>
+	<%@include file="/include/pie.jsp"%>
 
 

@@ -5,7 +5,7 @@
 
 
 
-		<jsp:include page="includes/cabecera.jsp">
+		<jsp:include page="include/cabecera.jsp">
 		<jsp:param value="titulo" name="carreras"/>
 		<jsp:param value="pagina" name="Carreras"/>
 		</jsp:include>
@@ -42,7 +42,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<%@include file="includes/pie.jsp"%>
+		<%@include file="include/pie.jsp"%>
 
 
 

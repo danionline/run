@@ -5,7 +5,7 @@
 <title>Registrarse Runners</title>
 
 
-		<jsp:include page="/includes/cabecera.jsp">
+		<jsp:include page="/include/cabecera.jsp">
 			<jsp:param value="titulo" name="inicio" />
 			<jsp:param value="pagina" name="inicio" />
 		</jsp:include>
@@ -23,7 +23,7 @@
 
 		<h1 align=center>Registrarse en Runners</h1>
 
-		<form action="login" method="post">
+		<form action="registrarse" method="post">
 
 			<input class="form-control" name="ide" type="text"	placeholder="ide de Usuario"> 
 			<br>	
@@ -39,7 +39,7 @@
 
 		</form>
 
-		<%@include file="/includes/pie.jsp"%>
+		<%@include file="/include/pie.jsp"%>
 
 
 

@@ -3,185 +3,236 @@ package com.renedo.runners.modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UsuarioDao {
+import org.apache.log4j.Logger;
 
-	public static UsuarioDao INSTANCE = null;
 
-	private UsuarioDao() {
+
+public class UsuarioDaoImpl implements UsuarioDAO {
+
+	private static UsuarioDaoImpl INSTANCE = null;
+	private final static Logger LOG = Logger.getLogger(UsuarioDaoImpl.class);
+
+	// exceuteQuerys => ResultSet
+	static final String SQL_GET_ALL_BY_NOMBRE = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id WHERE nombre LIKE ? LIMIT 500 ;   ";
+	static final String SQL_GET_ALL           = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id ORDER BY u.id DESC LIMIT 500 ; ";
+	static final String SQL_GET_BY_ID         = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id WHERE u.id = ? ; ";
+	static final String SQL_EXISTE            = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id WHERE u.nombre = ? AND contrasenia = ? ; ";
+
+	// executeUpdate => int
+	static final String SQL_INSERT = " INSERT INTO usuario(nombre, contrasenia, id_rol) VALUES( ? , ? , ? ); ";
+	static final String SQL_DELETE = " DELETE FROM usuario WHERE id = ? ;";
+	static final String SQL_UPDATE = " UPDATE usuario SET nombre = ?, contrasenia = ? , id_rol = ? WHERE id = ? ; ";
+
+	private UsuarioDaoImpl() {
 		super();
 	}
 
-	public static synchronized UsuarioDao getInstance() {
+	static synchronized public UsuarioDaoImpl getInstance() {
 
 		if (INSTANCE == null) {
-			INSTANCE = new UsuarioDao();
+			INSTANCE = new UsuarioDaoImpl();
 		}
 
 		return INSTANCE;
+
 	}
 
+	@Override
 	public ArrayList<Usuario> getAll() {
 
-		ArrayList<Usuario> registros = new ArrayList<Usuario>();
-
-		String sql = "SELECT  nombre, contrasena FROM usuario; ";
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
 		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(sql);
-				ResultSet rs = pst.executeQuery();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
+				ResultSet rs = pst.executeQuery();) {
 
-		) {
-
-			while (rs.next()) {
-
-				// recuperar columnas del resultset
-
-				String nombre = rs.getString("nombre");
-				String conse = rs.getString("contrasena");
-
-				// crear pojo con datos del rs
-				Usuario usuario = new Usuario();
-
-				usuario.setNombre(nombre);
-				usuario.setContrasena(conse);
-
-				// guardar en ArrayList
-				registros.add(usuario);
-
+			LOG.debug(pst);
+			while (rs.next()) {				
+				usuarios.add( mapper(rs) );
 			}
 
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
-		return registros;
+		return usuarios;
 	}
 
-	public ArrayList<Usuario> buscarId(int ide) throws Exception {
+	@Override
+	public Usuario getById(int id) throws Exception {
 
-		String sql = "Select ide,nombre from usuario ;";
-
-		int ides = 0;
-		int id = 0;
-		String nombre = "";
-		ArrayList<Usuario> registros = new ArrayList<Usuario>();
-		registros = getAll();
+		Usuario usuario = new Usuario();
 
 		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(sql);
-				ResultSet rs = pst.executeQuery();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_BY_ID);
 
 		) {
 
-			while (rs.next()) {
+			pst.setInt(1, id);
+			LOG.debug(pst);
+			try (ResultSet rs = pst.executeQuery()) {
 
-				// recuperar columnas del resultset
-				for (Usuario usuario : registros) {
-					ides = usuario.getId();
-					nombre = usuario.getNombre();
-
-					id = rs.getInt(ides);
-					nombre = rs.getString(nombre);
-					// crear pojo con datos del rs
-
-					if ((id == ide)) {
-
-						ide = rs.getInt("ide");
-					}
-
+				if (rs.next()) {
+					usuario = mapper(rs);
+				} else {
+					throw new Exception("Usuario no encontrado id = " + id);
 				}
-			}
+
+			} // 2º try
 
 		} catch (Exception e) {
+			LOG.error(e);
+		}
 
-			e.printStackTrace();
+		return usuario;
+	}
+
+	@Override
+	public Usuario delete(int id) throws Exception {
+
+		Usuario usuario = getById(id);
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_DELETE);) {
+
+			pst.setInt(1, id);
+			LOG.debug(pst);
+			if (pst.executeUpdate() != 1) {
+				throw new Exception("No se puede eliminar registro " + id);
+			}
+
+		}
+
+		return usuario;
+	}
+
+	@Override
+	public Usuario insert(Usuario pojo) throws Exception {
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);) {
+
+			pst.setString(1, pojo.getNombre() );
+			pst.setString(2, pojo.getContrasena() );
+			pst.setInt(3, pojo.getRol().getId() );
+			
+			LOG.debug(pst);
+			int affectedRows = pst.executeUpdate();
+			if (affectedRows == 1) {
+
+				try (ResultSet rsKeys = pst.getGeneratedKeys()) {
+
+					if (rsKeys.next()) {
+						pojo.setId(rsKeys.getInt(1));
+					}
+				}
+
+			} else {
+				throw new Exception("No se puede insertar registro " + pojo);
+			}
+
+		}
+
+		return pojo;
+	}
+
+	@Override
+	public Usuario update(Usuario pojo) throws Exception {
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_UPDATE);) {
+
+			pst.setString(1, pojo.getNombre());
+			pst.setString(2, pojo.getContrasena());
+			pst.setInt(3, pojo.getRol().getId());
+			pst.setInt(4, pojo.getId());
+
+			LOG.debug(pst);
+			if (pst.executeUpdate() != 1) {
+				throw new Exception("No se puede modificar registro " + pojo);
+			}
+
+		}
+
+		return pojo;
+	}
+
+	@Override
+	public ArrayList<Usuario> getAllByNombre(String palabraBuscada) {
+
+		ArrayList<Usuario> registros = new ArrayList<Usuario>();
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL_BY_NOMBRE);) {
+
+			pst.setString(1, "%" + palabraBuscada + "%");
+			LOG.debug(pst);
+			try (ResultSet rs = pst.executeQuery()) {
+
+				while (rs.next()) {
+					registros.add( mapper(rs) );
+				} // while
+
+			} // 2º try
+
+		} catch (Exception e) {
+			LOG.error(e);
 		}
 
 		return registros;
-
 	}
 
-	public Usuario insertarUsuario(Usuario usu) throws Exception {
+	@Override
+	public Usuario existe(String nombre, String password) {
 
-		String sql = "INSERT INTO usuario(ide,nombre,contrasena,imagen) VALUES (?,?,?,?)";
-
-		try (Connection con = ConnectionManager.getConnection();
-
-				PreparedStatement pst = con.prepareStatement(sql);
-
-		) {
-			pst.setInt(1, usu.getId());
-			pst.setString(2, usu.getNombre());
-			pst.setString(3, usu.getContrasena());
-			pst.setString(4, usu.getImagen());
-
-			int affectRows = pst.executeUpdate();
-			if (affectRows == 1) {
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return usu;
-
-	}
-
-	public Usuario modificarUsuario(Usuario usu, int ide) throws Exception {
-
-		String sql = "UPDATE usuario SET  nombre=?,contrasena=?,imagen=? WHERE ide =?;";
+		Usuario usuario = null;
 
 		try (Connection con = ConnectionManager.getConnection();
-
-				PreparedStatement pst = con.prepareStatement(sql);
+				PreparedStatement pst = con.prepareStatement(SQL_EXISTE);
 
 		) {
 
-			pst.setString(1, usu.getNombre());
-			pst.setString(2, usu.getContrasena());
-			pst.setString(3, usu.getImagen());
+			pst.setString(1 , nombre);
+			pst.setString(2 , password);
 
-			pst.setInt(4, ide);
+			LOG.debug(pst);
+			try (ResultSet rs = pst.executeQuery()) {
 
-			int affectRows = pst.executeUpdate();
+				if (rs.next()) {
+					usuario = mapper(rs);
+				} 
 
-			if (affectRows == 1) {
+			} // 2º try
 
-			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
-		return usu;
-
+		return usuario;
+	}
+	
+	
+	private Usuario mapper( ResultSet rs ) throws SQLException {
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setId(rs.getInt("id"));
+		usuario.setNombre(rs.getString("nombre"));
+		usuario.setContrasena( rs.getString("contrasenia"));
+		
+		//rol
+		Rol rol = new Rol();
+		rol.setId(rs.getInt("id_rol"));
+		rol.setNombre(rs.getString("nombre_rol"));
+		
+		// setear el rol al usuario
+		usuario.setRol(rol);
+		
+		return usuario;
+		
 	}
 
-	public Usuario eliminarUsuario(int ide) throws Exception {
-		Usuario u = new Usuario();
-		String sqldelete = "DELETE FROM usuario WHERE id_usuario = ? ;";
-		String sqlselect = "SELECT id_usuario, nombre, contrasena, imagen FROM usuario ORDER BY id_usuario DESC; ";
-		try (Connection con = ConnectionManager.getConnection();
-
-				PreparedStatement pst = con.prepareStatement(sqlselect);
-
-				PreparedStatement pstUpdate = con.prepareStatement(sqldelete);
-
-				ResultSet rs = pst.executeQuery()) {
-
-			while (rs.next()) {
-
-				u.setId(ide);
-			}
-			pstUpdate.setInt(1, ide);
-			int affedtedRows = pstUpdate.executeUpdate();
-
-			if (affedtedRows == 1) {
-
-			}
-		}
-		return u;
-	}
 }

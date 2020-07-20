@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/styles.css">
 
 
-
+ 	<base href="${pageContext.request.contextPath}/" />
     <title> ${param.title} | Runners</title>
   </head>
   <body onload="init()" >
@@ -91,18 +91,38 @@
            	</ul>            
             
             <!-- opciones cuando el usuario esta Logeado -->
-          
-            <span class = "form-inline">
-         	<c:if  test = "${ empty usulogin }" >
-            	  <a  class ="btn btn-outline-success my-2 my-sm-0"  href = "iniciarsesion.jsp" >Iniciar Sesión</a >
-            </c:if >	  
+                 <c:if test="${ not empty sessionScope.usuario_login }">
+             
+            	<li class="nav-item">
+              		<a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' } "  href="productos">Productos</a>
+            	</li>
+            	<li class="nav-item">
+              		<a class="nav-link ${ ( 'categorias' eq param.pagina ) ? 'active' : '' } "  href="categoria">Categorias</a>
+            	</li>
+            	<li class="nav-item">
+              		<a class="nav-link ${ ( 'usuario' eq param.pagina ) ? 'active' : '' } "  href="usuario">Usuarios</a>
+            	</li>
+            	
+            </c:if>	  
+                    
+          </ul>
+       
+        
+         <span class="form-inline">
+         
+         	
+         
+         	<c:if test="${ empty sessionScope.usuario_login }">
+            	  <a class="nav-link  btn btn-outline-warning" href="views/login.jsp">Iniciar Sesión</a>
+            </c:if>	  
             
-            <c:if  test = "${ not empty usulogin }" >
-            	<span  class = " badge badge-pill badge-light mr-3 " > ${usulogin.nombre } </span >
-            	<a  class = "btn btn-outline-success my-2 my-sm-0"  href = "cerrarsesion" >Cerrar Sesión</a >
-    		        
-	         </c:if >
-           </span>
+            <c:if test="${ not empty sessionScope.usuario_login }">
+            	<span class="badge badge-pill badge-light mr-3">${sessionScope.usuario_login.nombre}</span>
+            	<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
+            </c:if>
+              
+         </span>
+        
             
        
      

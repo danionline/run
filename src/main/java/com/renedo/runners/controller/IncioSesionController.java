@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.renedo.runners.modelo.Usuario;
-import com.renedo.runners.modelo.UsuarioDao;
+import com.renedo.runners.modelo.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class IncioSesionController
@@ -43,7 +43,7 @@ public class IncioSesionController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UsuarioDao dao = UsuarioDao.getInstance();
+		UsuarioDaoImpl dao = UsuarioDaoImpl.getInstance();
 		ArrayList<Usuario> asuario = null;
 		asuario = dao.getAll();
 		Usuario usu = new Usuario();

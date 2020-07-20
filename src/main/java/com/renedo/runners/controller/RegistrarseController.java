@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.renedo.runners.modelo.Usuario;
-import com.renedo.runners.modelo.UsuarioDao;
+import com.renedo.runners.modelo.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class RegistrarseController
  */
-@WebServlet("/login")
+@WebServlet("/registrarse")
 public class RegistrarseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class RegistrarseController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UsuarioDao dao = UsuarioDao.getInstance();
+		UsuarioDaoImpl dao = UsuarioDaoImpl.getInstance();
 		ArrayList<Usuario> asuario = null;
 		asuario = dao.getAll();
 		Usuario usu = new Usuario();
@@ -71,7 +71,7 @@ public class RegistrarseController extends HttpServlet {
 				usu.setContrasena(cons);
 				usu.setImagen(imagen);
 
-				dao.insertarUsuario(usu);
+				dao.insert(usu);
 
 				mensaje = "Corredor guardado con exito";
 			}

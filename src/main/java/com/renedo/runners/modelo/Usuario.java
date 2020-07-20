@@ -1,11 +1,14 @@
 package com.renedo.runners.modelo;
 
+import com.renedo.runners.modelo.*;
+
 public class Usuario {
 
 	private int id;
 	private String nombre;
 	private String contrasena;
 	private String imagen;
+	private Rol rol;
 
 	public Usuario() {
 		super();
@@ -58,6 +61,15 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", contraseña=" + contrasena + ", imagen=" + imagen + "]";
+	}
+
+	public void setRol(Rol rol) {
+		
+		this.rol = rol;
+	}
+
+	public Rol getRol() {
+		return rol;
 	}
 
 }

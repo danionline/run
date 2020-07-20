@@ -32,7 +32,7 @@
 <body>
 	<div class="container">
 
-		<jsp:include page="includes/cabecera.jsp">
+		<jsp:include page="include/cabecera.jsp">
 			<jsp:param name="pagina" value="inicio" />
 			<jsp:param name="title" value="Inicio" />
 		</jsp:include>
@@ -90,7 +90,7 @@
 
 
 
-		<%@include file="includes/pie.jsp"%>
+		<%@include file="include/pie.jsp"%>
 
 	</div>
 

@@ -3,7 +3,8 @@
      <div class="bg-dark">
       
         <footer class="container p-2">
-          &copy; Company 2017-2020</p>
+          <span class="float-right">&copy; Company 2017-2020</p>
+          <span class="text-white mr-3">Usuarios Conectados ${applicationScope.usuarios_conectados}</span>
         </footer>
      </div>
 
@@ -17,7 +18,7 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 	<!-- cifrado en MD5 -->
- 	<script src="js/md5.min.js"></script>
+ 
 
     <!-- nuestro javascript -->
     <script src="js/custom.js"></script>

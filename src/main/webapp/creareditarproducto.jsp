@@ -9,7 +9,7 @@
 
 <title>Crear Editar Producto</title>
 
-		<jsp:include page="includes/cabecera.jsp">
+		<jsp:include page="include/cabecera.jsp">
 			<jsp:param name="pagina" value="inicio" />
 			<jsp:param name="title" value="Inicio" />
 		</jsp:include>
@@ -46,7 +46,7 @@
 			</form>
 			
 	
-		<%@include file="includes/pie.jsp"%>
+		<%@include file="include/pie.jsp"%>
 
 
 
