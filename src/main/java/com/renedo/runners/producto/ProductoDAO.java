@@ -2,6 +2,10 @@ package com.renedo.runners.producto;
 
 import java.util.ArrayList;
 
+import com.renedo.runners.modelo.Usuario;
+import com.renedo.runners.producto.*;
+import com.renedo.runners.vista.Nombre;
+
 /**
  * Hereda los metodos basicos de la interfaz CrudAble Ademas definie un nuevo:
  * ArrayList<Producto> getAllByNombre( String nombre )

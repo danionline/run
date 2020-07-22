@@ -6,6 +6,6 @@ import com.renedo.runners.producto.CrudAble;
 
 public interface CategoriaDAO extends CrudAble<Categoria> {
 
-	ArrayList<Categoria> getAll();
+	ArrayList <Categoria> getAll();
 
 }
