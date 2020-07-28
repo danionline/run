@@ -2,10 +2,6 @@ package com.renedo.runners.producto;
 
 import java.util.ArrayList;
 
-import com.renedo.runners.modelo.Usuario;
-import com.renedo.runners.producto.*;
-import com.renedo.runners.vista.Nombre;
-
 /**
  * Hereda los metodos basicos de la interfaz CrudAble Ademas definie un nuevo:
  * ArrayList<Producto> getAllByNombre( String nombre )
@@ -24,11 +20,13 @@ public interface ProductoDAO extends CrudAble<Producto> {
 	ArrayList<Producto> getAllByCategoria(int idCategoria, int i);
 
 	ArrayList<Producto> getLast(int i);
-	
-	
+
 	Producto insert(Producto pojo) throws Exception;
+
 	Producto delete(int id) throws Exception;
+
 	Producto getById(int id) throws Exception;
-	
+
+	ArrayList<Producto> getProducto(int usuario, boolean validar);
 
 }

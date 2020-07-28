@@ -3,6 +3,8 @@ package com.renedo.runners.producto;
 import java.util.ArrayList;
 
 import com.renedo.runners.categorias.Categoria;
+import com.renedo.runners.modelo.ResumenUsuario;
+import com.renedo.runners.modelo.Usuario;
 
 public class Producto {
 
@@ -11,7 +13,16 @@ public class Producto {
 	private String imagen;
 	private float precio;
 	private Categoria categoria;
-	
+	private Usuario usuario;
+	private ResumenUsuario resumen;
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Producto() {
 		super();
@@ -20,6 +31,38 @@ public class Producto {
 		this.precio = 0;
 		this.imagen = "imagenes/camiseta.jpeg";
 		this.categoria = new Categoria();
+		this.usuario = new Usuario();
+		this.resumen = new ResumenUsuario();
+	}
+
+	public Producto(int id, String nombre, String imagen, float precio, Categoria categoria, Usuario usuario,
+			ResumenUsuario resumen) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.precio = precio;
+		this.categoria = categoria;
+		this.usuario = usuario;
+		this.resumen = resumen;
+	}
+
+	public ResumenUsuario getResumen() {
+		return resumen;
+	}
+
+	public void setResumen(ResumenUsuario resumen) {
+		this.resumen = resumen;
+	}
+
+	public Producto(int id, String nombre, String imagen, float precio, Categoria categoria, Usuario usuario) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.precio = precio;
+		this.categoria = categoria;
+		this.usuario = usuario;
 	}
 
 	public Producto(String nombre) {
@@ -62,9 +105,9 @@ public class Producto {
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	
+
 	public int getCategoriaId() {
-		
+
 		return categoria.getId();
 	}
 
@@ -75,7 +118,7 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", precio=" + precio
-				+ ", categoria=" + categoria + "]";
+				+ ", categoria=" + categoria + ", usuario=" + usuario + ", resumen=" + resumen + "]";
 	}
 
 }

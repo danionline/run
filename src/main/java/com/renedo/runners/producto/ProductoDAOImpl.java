@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.renedo.runners.categorias.Categoria;
-import com.renedo.runners.categorias.CategoriaDAOImpl;
 import com.renedo.runners.modelo.ConnectionManager;
+import com.renedo.runners.modelo.ResumenUsuario;
+import com.renedo.runners.modelo.Usuario;
 
 public class ProductoDAOImpl implements ProductoDAO {
 
@@ -32,9 +33,28 @@ public class ProductoDAOImpl implements ProductoDAO {
 	}
 
 	// excuteQuery => ResultSet
-	private final String SQL_GET_ALL = " SELECT " + "	 p.id     'id', " + "	 p.nombre 'nombre', " + "	 precio, "
-			+ "	 imagen, " + "	 c.id     'id_categoria', " + "	 c.nombre 'nombre_categoria'	"
-			+ " FROM producto p , categoria c " + " WHERE p.id_categoria  = c.id " + " ORDER BY p.id DESC LIMIT 500; ";
+
+	private final String SELECT_CAMPOS = "SELECT u.id 'usuario_id', u.nombre 'usuario_nombre', p.id  'producto_id', p.nombre 'producto_nombre', precio, imagen, c.id 'categoria_id', c.nombre 'categoria_nombre' ";
+	private final String FROM_INNER_JOIN = " FROM producto p , categoria c, usuario u WHERE p.id_categoria  = c.id AND p.id_usuario = u.id  ";
+
+	
+	
+	private final String SQL_GET_BY_USUARIO_PRODUCTO_VALIDADO = SELECT_CAMPOS + FROM_INNER_JOIN
+			+ " AND fecha_validar IS NOT NULL AND p.id_usuario = ? \n" + "ORDER BY p.id DESC LIMIT 500; ";
+
+	private final String SQL_GET_BY_USUARIO_PRODUCTO_SIN_VALIDAR = SELECT_CAMPOS + FROM_INNER_JOIN
+			+ " AND fecha_validar IS NULL AND p.id_usuario = ? \n" + "ORDER BY p.id DESC LIMIT 500; ";
+
+	
+	
+	private final String SQL = "SELECT COUNT(producto.id) as \"productosTotal\", COUNT(producto.fecha_crear) as \"productosAprobados\" ,Count(producto.fecha_validar )as \"productosPendientes\" FROM producto  where producto.id_usuario = ? LIMIT 200; ";
+
+	private final String SQL_GET = "SELECT  p.id, p.nombre, c.nombre, p.imagen ,p.precio From producto p , usuario u , categoria c where p.id_usuario =u.id and p.id_categoria = c.id where id_usuario = ? and p.fecha_validar is NULL ORDER by id_usuario ASC;"; 
+	
+	
+	// excuteQuery => ResultSet
+	private final String SQL_GET_ALL = SELECT_CAMPOS + FROM_INNER_JOIN + " AND fecha_validar IS NOT NULL "
+			+ " ORDER BY p.id DESC LIMIT 500; ";
 
 	private final String SQL_GET_BY_ID = " SELECT " + "	 p.id     'id', " + "	 p.nombre 'nombre', " + "	 precio, "
 			+ "	 imagen, " + "	 c.id     'id_categoria', " + "	 c.nombre 'nombre_categoria'	"
@@ -51,20 +71,76 @@ public class ProductoDAOImpl implements ProductoDAO {
 
 	private final String SQL_DELETE = " DELETE FROM producto WHERE id = ? ; ";
 
-	private final String SQL_GET = "SELECT id, nombre, precio, imagen FROM producto;";
-
 	public ArrayList<Producto> getAllByNombre(String nombre) {
 		return null;
 	}
 
-	@Override
+	public ArrayList<Producto> getProducto(int idUsuario, boolean validar) {
+
+		ArrayList<Producto> registros = new ArrayList<Producto>();
+
+		String sql = (validar) ? SQL_GET_BY_USUARIO_PRODUCTO_VALIDADO : SQL_GET_BY_USUARIO_PRODUCTO_SIN_VALIDAR;
+
+		try (Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(sql);) {
+
+			// TODO mirar como hacerlo con una SQL, "IS NOT NULL" o "IS NULL"
+			// pst.setBoolean(1, isValidado); // me sustitulle con un 1 o 0
+			pst.setInt(1, idUsuario);
+			pst.setBoolean(1,validar);
+			
+
+			LOG.debug(pst);
+
+			try (ResultSet rs = pst.executeQuery()) {
+				while (rs.next()) {
+					registros.add(mapper(rs));
+				}
+			}
+
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+
+		return registros;
+	}
+
+	public Producto getResumenByUsuario(int idUsuario) {
+		ResumenUsuario resul = new ResumenUsuario();
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		Producto producto = new Producto();
+
+		try (Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL);) {
+
+			pst.setInt(1, idUsuario);
+
+			try (ResultSet rs = pst.executeQuery()) {
+				if (rs.next()) {
+					// mapper de RS al POJO
+
+					resul.setIdUsuario(rs.getInt(idUsuario));
+					resul.setProductosTotal(rs.getInt("productosTotal"));
+					resul.setProductosAprobados(rs.getInt("productosAprobados"));
+					resul.setProductosPendientes(rs.getInt("productosPendientes"));
+					producto.setResumen(resul);
+
+					productos.add(producto);
+				}
+			}
+
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+		return producto;
+	}
 
 	public ArrayList<Producto> getAll() {
 
 		ArrayList<Producto> registros = new ArrayList<Producto>();
 
 		try (Connection conexion = ConnectionManager.getConnection();
-				PreparedStatement pst = conexion.prepareStatement(SQL_GET);
+				PreparedStatement pst = conexion.prepareStatement(SQL_GET_ALL);
 				ResultSet rs = pst.executeQuery();) {
 			LOG.debug(pst);
 			while (rs.next()) {
@@ -133,11 +209,11 @@ public class ProductoDAOImpl implements ProductoDAO {
 				PreparedStatement pst = conexion.prepareStatement(SQL_INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 
 		) {
-			
+
 			pst.setString(1, pojo.getNombre());
 			pst.setString(2, pojo.getImagen());
 			pst.setFloat(3, pojo.getPrecio());
-			pst.setInt(4,pojo.getId());
+			pst.setInt(4, pojo.getId());
 			pst.setInt(5, pojo.getCategoriaId());
 			int affectedRows = pst.executeUpdate();
 
@@ -175,8 +251,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 			pst.setString(1, pojo.getNombre());
 			pst.setString(2, pojo.getImagen());
 			pst.setFloat(3, pojo.getPrecio());
-			pst.setInt(4,pojo.getCategoriaId());
-			
+			pst.setInt(4, pojo.getCategoriaId());
 
 			int affectedRows = pst.executeUpdate();
 			if (affectedRows != 1) {
@@ -200,6 +275,14 @@ public class ProductoDAOImpl implements ProductoDAO {
 		p.setImagen(rs.getString("imagen"));
 		p.setNombre(rs.getString("nombre"));
 		p.setPrecio(rs.getFloat("precio"));
+		Categoria g = new Categoria();
+		g.setId(rs.getInt("id"));
+		g.setNombre("nombre");
+		p.setCategoria(g);
+		Usuario u = new Usuario();
+		u.setId(rs.getInt("id"));
+		u.setNombre("nombre");
+		p.setUsuario(u);
 		return p;
 	}
 
@@ -236,4 +319,11 @@ public class ProductoDAOImpl implements ProductoDAO {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Producto> getProducto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

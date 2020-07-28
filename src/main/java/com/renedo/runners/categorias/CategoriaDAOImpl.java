@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.renedo.runners.modelo.ConnectionManager;
+import com.renedo.runners.producto.Producto;
 
 public class CategoriaDAOImpl implements CategoriaDAO {
 
@@ -80,6 +81,12 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		c.setId(rs.getInt("id"));
 		c.setNombre(rs.getString("nombre"));
 		return c;
+	}
+
+	@Override
+	public ArrayList<Producto> getProducto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

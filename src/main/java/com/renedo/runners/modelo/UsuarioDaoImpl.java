@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import com.renedo.runners.producto.Producto;
+
 
 
 public class UsuarioDaoImpl implements UsuarioDAO {
@@ -233,6 +235,12 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		
 		return usuario;
 		
+	}
+
+	@Override
+	public ArrayList<Producto> getProducto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
