@@ -17,7 +17,7 @@
 
 
 
-<h2>${cabecera}</h2>
+<h1>${cabecera}</h1>
 
 
 
@@ -37,7 +37,7 @@
 					<strong>Categorias</strong>
 				</h4>
 				<p class="badge badge-pill badge-primary"></p>
-     <p class="badge badge-pill badge-primary">${categoria.nombre }</p>
+     <p class="badge badge-pill badge-primary">${categoria.nombrecategoria }</p>
 				<h5 class="card-title">${p.nombre}</h5>
 				<p class="card-text">${p.precio}Euros.</p>
 

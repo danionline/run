@@ -61,8 +61,8 @@ public class ProductoDAOImpl implements ProductoDAO {
 	// excuteUpdate => int numero de filas afectadas
 	// TODO faltan campos imagen y precio
 
-	private final String SQL_CATEGORIA = "SELECT p.id, p.nombre, p.precio , p.imagen ,c.nombre 'nombre_categoria' ,p.id_categoria \n"
-			+ "FROM producto p, categoria c Where p.id_categoria =c.id AND c.id=? LIMIT ? ;";
+	private final String SQL_CATEGORIA = "SELECT p.id, p.nombre, p.precio , p.imagen ,c.nombrecategoria ,p.id_categoria\n"
+			+ "FROM producto p, categoria c Where p.id_categoria =c.id AND c.id=? LIMIT ?;";
 
 	private final String SQL_INSERT = " INSERT INTO producto (nombre, imagen, precio , id, id_categoria ) VALUES ( ? , ?, ? , ?, ? ) ; ";
 	private final String SQL_UPDATE = " UPDATE producto SET nombre = ?, imagen = ?, precio = ? id_categoria = ? WHERE id = ? ; ";
