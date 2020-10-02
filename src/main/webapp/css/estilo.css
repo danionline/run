@@ -197,6 +197,7 @@ figure {
 }
 
 img {
+	
   vertical-align: middle;
   border-style: none;
 }
@@ -568,8 +569,8 @@ pre code {
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
   width: 100%;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
   margin-right: auto;
   margin-left: auto;
 }

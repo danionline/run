@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="css/styles.css">
 
 
- 	<base href="${pageContext.request.contextPath}/" />
     <title> ${param.title} | Runners</title>
   </head>
   <body onload="init()" >
@@ -113,7 +112,7 @@
 
     
       
-      <main role="main" class="container" style="margin-top:100px" >
+      <main role="main" id="container">
    			
       	<jsp:include page="alerta.jsp"></jsp:include>
       
