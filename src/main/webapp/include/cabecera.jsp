@@ -23,54 +23,46 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <title> ${param.title} | Runners</title>
   </head>
   <body onload="init()" >
 
 
-    <nav class="navbar navbar-expand-md  fixed-top bg-dark bg-dark">
-        <!-- logo -->
-         <a class="navbar-brand " href="index.html">
-       		
-        </a>
-      
-
-       
-      
-        <!-- lista enlaces -->
-          
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"  >
-              <a class="nav-link ${ ( 'inicio' eq param.pagina ) ? 'active' : '' }" href="index.jsp">RunnerS</a>
-            </li>
-           </ul> 
-            
-                       
-               	
-         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"  >
-              <a class="nav-link ${ ( 'eliminarusuarios' eq param.pagina ) ? 'active' : '' }" href="eliminarusuarios.jsp">Darse de Baja</a>
-            </li>
-          </ul>
+      <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+				 
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="navbar-toggler-icon"></span>
+					</button> <a class="navbar-brand" href="index.jsp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RUNNERS</font></font></a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="navbar-nav mr-auto">
+           				 <li class="nav-item"  >
+            			  <a class="nav-link ${ ( 'eliminarusuarios' eq param.pagina ) ? 'active' : '' }" href="eliminarusuarios.jsp">Darse de Baja</a>
+            			</li>
+          			</ul>
             
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"  >
-              <a class="nav-link ${ ( 'registrarse' eq param.pagina ) ? 'active' : '' }" href="registrarse.jsp">Registrarse</a>
-            </li>     
+            	<li class="nav-item"  >
+             	 <a class="nav-link ${ ( 'registrarse' eq param.pagina ) ? 'active' : '' }" href="registrarse.jsp">Registrarse</a>
+            	</li>     
            </ul>
            
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item"  >
-              <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras">Carreras</a>
-           	</li>
+          		  <li class="nav-item"  >
+             		 <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras">Carreras</a>
+           			</li>
            </ul>
            
 			<ul class="navbar-nav mr-auto">
-            <li class="nav-item"  >
-              <a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' }" href="productos">Productos</a>
+            	<li class="nav-item"  >
+             	 <a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' }" href="productos">Productos</a>
             		
-            </li>
+            	</li>
            	</ul>
        
             <div class="nav-item dropdown">
@@ -84,7 +76,7 @@
 		    	</div>
 		    </div>	
 		             
-            
+   </div></nav></div></div>
         
          
          	
@@ -98,7 +90,18 @@
             	<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
             </c:if>
               
-         </span>
+         
+				</div>
+			</nav>
+       
+      
+        <!-- lista enlaces -->
+          
+          
+            
+                       
+               	
+         
         
             
        
