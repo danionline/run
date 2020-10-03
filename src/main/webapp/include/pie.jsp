@@ -3,7 +3,7 @@
      <div class="bg-dark">
       
         <footer class="container p-1">
-          <span class="float-right">&copy; Company 2017-2020</p>
+          <span class="float-right-WHITE" bg-primary>&copy; Company @Daniel 2020</span>
           <span class="text-white mr-3">Usuarios Conectados ${applicationScope.usuarios_conectados}</span>
         </footer>
      </div>
