@@ -57,26 +57,7 @@
 					</ul>
 				</div>
 				
-				 <div class="col-md-2">
-						
-					
-							<ul class="navbar-nav">
-								<li class="nav-item"  >
-					
-					
-							<c:if test="${ empty sessionScope.usuario_login }">
-            	 				 <a class="nav-link  btn btn-outline-warning" href="views/login.jsp">Iniciar Sesión</a>
-            				</c:if>	  
-            
-            				<c:if test="${ not empty sessionScope.usuario_login }">
-            					<span class="badge badge-pill badge-light mr-3">${sessionScope.usuario_login.nombre}</span>
-            					<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
-            				</c:if>
-					
-							</ul>
-							</div>
-						</nav>
-					</div>
+				</nav>
 				</div>
 				
 			</div>	 
@@ -140,7 +121,7 @@
 		</div>
 	</div>
 </div>
-
+<%@include file="include/pie.jsp"%>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>

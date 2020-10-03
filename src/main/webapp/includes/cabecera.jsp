@@ -87,7 +87,7 @@
          	
          
          	<c:if test="${ empty sessionScope.usuario_login }">
-            	  <a class="nav-link  btn btn-outline-warning" href="views/login.jsp">Iniciar Sesión</a>
+            	  <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar Sesión</a>
             </c:if>	  
             
             <c:if test="${ not empty sessionScope.usuario_login }">
