@@ -3,6 +3,7 @@
      <div class="bg-dark">
       
         <footer class="container p-1">
+        <a href=doc/index.html>Documentacion RunnerS</a>
           <span class="float-right-WHITE" bg-primary>&copy; Company @Daniel 2020</span>
           <span class="text-white mr-3">Usuarios Conectados ${applicationScope.usuarios_conectados}</span>
         </footer>

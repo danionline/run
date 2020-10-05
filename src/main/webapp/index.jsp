@@ -27,16 +27,8 @@
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
-			 
+		
 				
-				 
-				 
-				 
-				
-					
-					
-			
 			<div class="carousel slide" id="carousel-722381">
 				<ol class="carousel-indicators">
 					<li data-slta-target="#carousel-722381">
@@ -87,14 +79,18 @@
  			</STYLE>
  			<H2>RunnerS</H2>
  			
-			  <STYLE type="text/css">
- 				p { text-align: center}
+			 <STYLE type="text/css">
+ 				p{ text-align: center}
+ 				
  			</STYLE>
 			<p style center" >Web basada en deportes y para el deporte, make of JAVA and BOOTSRAP.</p>
+			
 		</div>
-		<a href=doc/index.html>Documentacion RunnerS</a>
+	
 	</div>
+	
 </div>
+
 <%@include file="include/pie.jsp"%>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
