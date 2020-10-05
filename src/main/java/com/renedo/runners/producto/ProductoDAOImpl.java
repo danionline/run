@@ -180,7 +180,6 @@ public class ProductoDAOImpl implements ProductoDAO {
 	public Producto delete(int id) throws Exception {
 
 		// conseguir el producto antes de Eliminar
-		Producto registro = getById(id);
 
 		try (Connection conexion = ConnectionManager.getConnection();
 				PreparedStatement pst = conexion.prepareStatement(SQL_DELETE);
@@ -196,7 +195,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 
 		} // try
 
-		return registro;
+		return null;
 	}
 
 	@Override

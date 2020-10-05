@@ -1,6 +1,7 @@
 package com.renedo.runners.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,15 +45,12 @@ public class CrearProductosController extends HttpServlet {
 
 		Producto producto = new Producto();
 
-		String mensaje = "";
-
 		try {
 
 			/// crear producto
 
 			String nombre = request.getParameter("nombre");
 			float precio = Float.parseFloat(request.getParameter("precio"));
-			String imagen = request.getParameter("imagen");
 
 			/// rellenar el objeto con los datos del formulario
 
@@ -63,26 +61,25 @@ public class CrearProductosController extends HttpServlet {
 			if (producto.getId() == 0) {
 
 				dao.insert(producto);
-				mensaje = "Producto guardado con exito";
-				request.setAttribute("mensaje", mensaje);
 
 				/// modificar
 			} else {
 				dao.getById(producto.getId());
 				dao.update(producto);
-				mensaje = "producto esta editado con exito";
 
 			}
 
 		} catch (Exception e) {
 
-			mensaje = "Lo sentimos pero hemos tenido una Excepcion " + e.getMessage();
 			e.printStackTrace();
 
 			// enviar datos a la vista
 
+		} finally {
+			ArrayList<Producto> productos = new ArrayList<Producto>();
+			productos = dao.getAll();
+			request.setAttribute("productos", productos);
+			request.getRequestDispatcher("productos.jsp").forward(request, response);
 		}
-		request.setAttribute(mensaje, "mensaje");
-		request.getRequestDispatcher("productos.jsp").forward(request, response);
 	}
 }
