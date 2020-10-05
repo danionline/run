@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import com.renedo.runners.carrera.ConnectionManager;
 import com.renedo.runners.categorias.Categoria;
-import com.renedo.runners.modelo.ConnectionManager;
-import com.renedo.runners.modelo.ResumenUsuario;
-import com.renedo.runners.modelo.Usuario;
+import com.renedo.runners.usuario.ResumenUsuario;
+import com.renedo.runners.usuario.Usuario;
 
 public class ProductoDAOImpl implements ProductoDAO {
 

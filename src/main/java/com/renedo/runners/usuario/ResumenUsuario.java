@@ -1,4 +1,4 @@
-package com.renedo.runners.modelo;
+package com.renedo.runners.usuario;
 
 /**
  * Pojo para guardar datos estadisticos del Usuario.<br>

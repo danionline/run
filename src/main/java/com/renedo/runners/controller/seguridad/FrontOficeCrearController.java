@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 
 import com.renedo.runners.categorias.Categoria;
-import com.renedo.runners.modelo.Usuario;
 import com.renedo.runners.producto.Producto;
 import com.renedo.runners.producto.ProductoDAOImpl;
+import com.renedo.runners.usuario.Usuario;
 
 
 

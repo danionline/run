@@ -1,4 +1,4 @@
-package com.renedo.runners.modelo;
+package com.renedo.runners.usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import com.renedo.runners.carrera.ConnectionManager;
 import com.renedo.runners.producto.Producto;
 
 public class UsuarioDaoImpl implements UsuarioDAO {

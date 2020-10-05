@@ -1,4 +1,4 @@
-package com.renedo.runners.modelo;
+package com.renedo.runners.usuario;
 
 import java.util.ArrayList;
 
@@ -32,6 +32,33 @@ public interface UsuarioDAO extends CrudAble<Usuario> {
 	 */
 	Usuario existe(String nombre, String password);
 
+	/**
+	 * Inserta si no existe el usuario en la base de datos sino lanza una excepcion
+	 * 
+	 * @param Usuario pojo
+	 * 
+	 * @return Usuario con datos si lo encuentra, si no existe retorna null
+	 */
+
 	Usuario insert(Usuario pojo) throws Exception;
 
+	/**
+	 * Modifica si existe el usuario en la base de datos sino lanza una excepcion
+	 * 
+	 * @param Usuario pojo
+	 * 
+	 * @return Usuario con datos si lo encuentra, si no existe retorna null
+	 */
+
+	Usuario update(Usuario pojo) throws Exception;
+
+	/**
+	 * Eliminar si existe el usuario en la base de datos sino lanza una excepcion
+	 * 
+	 * @param id int ide del usuario
+	 * 
+	 * @return Usuario con datos si lo encuentra, si no existe retorna null
+	 */
+
+	Usuario delete(int id) throws Exception;
 }

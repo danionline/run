@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.renedo.runners.modelo.Carrera;
-import com.renedo.runners.modelo.CarreraDao;
+import com.renedo.runners.carrera.Carrera;
+import com.renedo.runners.carrera.CarreraDao;
 
 /**
  * Servlet implementation class CarrerasController

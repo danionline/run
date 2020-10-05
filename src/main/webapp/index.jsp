@@ -17,6 +17,11 @@
     <link href="css/style.css" rel="stylesheet">
 
   </head>
+  
+  <jsp:include page="include/cabecera.jsp">
+	<jsp:param name="pagina" value="Inicio" />
+	<jsp:param name="title" value="Inicio" />
+</jsp:include>
   <body>
 
     <div class="container-fluid">
@@ -28,39 +33,7 @@
 				 
 				 
 				 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="navbar-toggler-icon"></span>
-				</button> <a class="navbar-brand" href="index.jsp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RunnerS</font></font></a>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="navbar-nav">
-						<li class="nav-item"  >
-             				 <a class="nav-link ${ ( 'registrarse' eq param.pagina ) ? 'active' : '' }" href="registrarse.jsp">Registrarse</a>
-            			</li>  
-						 <li class="nav-item"  >
-             		 <a class="nav-link ${ ( 'carreras' eq param.pagina ) ? 'active' : '' }" href="carreras">Carreras</a>
-           			</li>
-           			<li class="nav-item"  >
-             	 <a class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' }" href="productos">Productos</a>
-            		
-            		</li>
-						<li class="nav-item dropdown">
-							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categorias</font></font></a>
-							
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">    
-		        					<c:forEach items="${categorias}" var="categoria">
-		          				<a class="dropdown-item" href="inicio?idCategoria=${categoria.id}">${categoria.nombre}</a>
-		          					</c:forEach>		          
-		    					</div>
-		    				
-							
-						</li>
-					</ul>
-				</div>
 				
-				</nav>
-				</div>
-				
-			</div>	 
 					
 					
 			

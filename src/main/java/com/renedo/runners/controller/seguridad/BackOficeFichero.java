@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.renedo.runners.modelo.ConnectionManager;
+import com.renedo.runners.carrera.ConnectionManager;
 
 /**
  * Servlet implementation class BackOficeFichero

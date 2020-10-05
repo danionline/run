@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.renedo.runners.modelo.Usuario;
-import com.renedo.runners.modelo.UsuarioDaoImpl;
+import com.renedo.runners.usuario.Usuario;
+import com.renedo.runners.usuario.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class RegistrarseController

@@ -1,4 +1,4 @@
-package com.renedo.runners.modelo;
+package com.renedo.runners.usuario;
 
 public class Rol {
 	

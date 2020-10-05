@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.renedo.runners.modelo.Usuario;
-import com.renedo.runners.modelo.UsuarioDaoImpl;
+import com.renedo.runners.usuario.Usuario;
+import com.renedo.runners.usuario.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class IncioSesionController

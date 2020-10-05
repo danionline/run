@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
- 
-import com.renedo.runners.modelo.*;
+
+import com.renedo.runners.carrera.*;
 import com.renedo.runners.seguridad.*;
+import com.renedo.runners.usuario.Rol;
+import com.renedo.runners.usuario.Usuario;
 
 /**
  * Servlet Filter implementation class BackOfficeFilter

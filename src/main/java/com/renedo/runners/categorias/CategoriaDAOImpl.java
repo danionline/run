@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.renedo.runners.modelo.ConnectionManager;
+import com.renedo.runners.carrera.ConnectionManager;
 import com.renedo.runners.producto.Producto;
 
 public class CategoriaDAOImpl implements CategoriaDAO {

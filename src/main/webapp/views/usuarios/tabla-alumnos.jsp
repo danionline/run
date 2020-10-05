@@ -1,5 +1,5 @@
 
-<%@page import="com.renedo.runners.modelo.Usuario"%>
+<%@page import="com.renedo.runners.usuario.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 
 <a href="index.jsp">VOLVER</a>

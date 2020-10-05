@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.renedo.runners.modelo.ResumenUsuario;
-import com.renedo.runners.modelo.Usuario;
 import com.renedo.runners.producto.Producto;
 import com.renedo.runners.producto.ProductoDAOImpl;
+import com.renedo.runners.usuario.ResumenUsuario;
+import com.renedo.runners.usuario.Usuario;
 
 /**
  * Servlet implementation class FrontOficeInicioController

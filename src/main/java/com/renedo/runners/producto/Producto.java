@@ -1,8 +1,8 @@
 package com.renedo.runners.producto;
 
 import com.renedo.runners.categorias.Categoria;
-import com.renedo.runners.modelo.ResumenUsuario;
-import com.renedo.runners.modelo.Usuario;
+import com.renedo.runners.usuario.ResumenUsuario;
+import com.renedo.runners.usuario.Usuario;
 
 public class Producto {
 

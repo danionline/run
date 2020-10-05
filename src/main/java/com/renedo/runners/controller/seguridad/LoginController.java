@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
+import com.renedo.runners.carrera.*;
 import com.renedo.runners.controller.Alerta;
-import com.renedo.runners.modelo.*;
+import com.renedo.runners.usuario.Rol;
+import com.renedo.runners.usuario.Usuario;
+import com.renedo.runners.usuario.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class LoginController

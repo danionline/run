@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.renedo.runners.modelo.*;
+import com.renedo.runners.usuario.Rol;
+import com.renedo.runners.usuario.Usuario;
+import com.renedo.runners.carrera.*;
 import com.renedo.runners.controller.*;
 
 /**

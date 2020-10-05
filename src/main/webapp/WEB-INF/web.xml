@@ -7,14 +7,14 @@
 	
 	<!--
 	
-	 	La primra URL que se ejecua es esta "inicio"
+	 	La primera URL que se ejecua es esta "inicio"
 	 	con esto forzamos para que no sea index.jsp
 	 	Y conseguimso pasar por un controlador para conseguir los datos a mostrar en index.jsp
 	 	
 	 -->
 	 
 	<welcome-file-list>		
-		<welcome-file>inicio</welcome-file>		
+		<welcome-file>index.jsp</welcome-file>		
 	</welcome-file-list>
   
 </web-app>
