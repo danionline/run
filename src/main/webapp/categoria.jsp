@@ -14,39 +14,35 @@
 
 
 
+ <STYLE type="text/css">
+ 			 H1 { text-align: center}
+ 			</STYLE>
+ 			<H1>Productos por Categoria</H1>
 
 
-
-<h1>${cabecera}</h1>
-
-
-
-<div class="row-card">
+		<div class="row">
+			<c:forEach items="${productos}" var="p">
+  				<div class="col-sm-3">
+					<div class="card-group">
+  						<div class="card" style="width: 18rem;">
+  						
+    					<img class="card-img-top" src="${p.imagen}" alt="Card image cap">
+    					<div class="card-body">
+      					<h5 class="card-title"><span class="badge badge-warning">${p.categoria.nombre}</span></h5>
+      					<p class="card-text">${p.nombre }</p>
+      					<p class="card-text">${p.precio}Euros.</p>
+   						</div>
+   					</div>
+   				</div>	
+   			</div>	
+   			 </c:forEach>
+   		 </div>
+    
+    
+  	
 	
-	
-	<c:forEach items="${productos}" var="p">
 
-		<div class="card">
-
-			<img src="${p.imagen}" class="img-responsive" alt="Cinque Terre"></img>
-
-
-			<div class="card-body">
-
-				<h4 class="card-title">
-					<strong>Categorias</strong>
-				</h4>
-				<p class="badge badge-pill badge-primary"></p>
-     <p class="badge badge-pill badge-primary">${categoria.nombrecategoria }</p>
-				<h5 class="card-title">${p.nombre}</h5>
-				<p class="card-text">${p.precio}Euros.</p>
-
-
-			</div>
-		</div>
-	</c:forEach>
-</div>
-
+		
 
 
 <%@include file="include/pie.jsp"%>

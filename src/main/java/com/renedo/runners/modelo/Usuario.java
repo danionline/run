@@ -1,13 +1,10 @@
 package com.renedo.runners.modelo;
 
-import com.renedo.runners.modelo.*;
-
 public class Usuario {
 
 	private int id;
 	private String nombre;
 	private String contrasena;
-	private String imagen;
 	private Rol rol;
 
 	public Usuario() {
@@ -15,7 +12,7 @@ public class Usuario {
 		this.id = 0;
 		this.nombre = "";
 		this.contrasena = "";
-		this.imagen = "";
+
 	}
 
 	public int getId() {
@@ -42,29 +39,21 @@ public class Usuario {
 		this.contrasena = conse;
 	}
 
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
-	public Usuario(int id, String nombre, String contrasena, String imagen) {
+	public Usuario(int id, String nombre, String contrasena, Rol rol) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.contrasena = contrasena;
-		this.imagen = imagen;
+		this.rol = rol;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", contraseña=" + contrasena + ", imagen=" + imagen + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", contraseña=" + contrasena + "]";
 	}
 
 	public void setRol(Rol rol) {
-		
+
 		this.rol = rol;
 	}
 

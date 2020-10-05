@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 
@@ -21,11 +18,13 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-
+"${producto}" 
 		<form action="crear-producto" method="post">
-			<label for="textlabel" class="col-sm-3 col-form-label">ID del Producto</label>
 			
-			<input class="form-control" name="id" type="text" placeholder="ID del Producto"> 
+			<label for="textlabel"	class="col-sm-3 col-form-label">ID del Producto</label> 
+			
+			<input class="form-control" value="${producto}" type="text">
+		
 		
 			<label for="textlabel"	class="col-sm-3 col-form-label">Nombre del Producto</label> 
 			

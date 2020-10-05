@@ -44,11 +44,12 @@
 					<td>${p.categoria.nombre}</td>
 					<td><img src="${p.imagen}"  class="img-thumbnail" alt="imagen..."></td>
 					<td>
-						<a href="creareditarproducto.jsp" class="mr-4"><i class="fa fa-pencil-square fa-2x" style=" color:green" title="Crear Producto"></i></a>
-						<a href="creareditarproducto.jsp" class="mr-4"> <i class="far fa-edit fa-2x" title="Editar Producto"></i></a>
-						<a href="producto-eliminar?id=${p.id}"
-						   onclick="confirmar('${p.nombre}')" 
-						   ><i class="fas fa-trash fa-2x" style=" color:yellow" title="Eliminar Producto"></i></a>
+					
+						<a href="creareditarproducto?id=${p.id}" class="btn btn-xs btn-success">[+] <span class="glyphicon glyphicon-registration-mark"></span></a>
+						
+						<a href="creareditarproducto?id=${p.id}" class="btn btn-xs btn-info">[=] <span class="glyphicon glyphicon-registration-mark"></span></a>
+						<a href="producto-eliminar?id=${p.id}"  onclick="confirmar('${p.nombre}')" ><i class="btn btn-xs btn-warning">[-]</i> <span class="glyphicon glyphicon-registration-mark"></span></a>					
+						
 					</td>
 				</tr>
 			</c:forEach>
@@ -57,5 +58,4 @@
 
 <%@include file="include/pie.jsp" %>
 
-</div>
-</body>
+

@@ -23,6 +23,8 @@
 
 		<h1 align=center>Registrarse en Runners</h1>
 
+		"${usu}"
+
 		<form action="registrarse" method="post">
 
 				

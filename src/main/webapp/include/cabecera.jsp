@@ -1,5 +1,6 @@
   
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 
 
@@ -10,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 4, from LayoutIt!</title>
+    <title>Bootstrap 4, RunnerS</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
@@ -67,12 +68,12 @@
 					
 					
 							<c:if test="${ empty sessionScope.usuario_login }">
-            	 				 <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar Sesión</a>
+            	 				 <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar SesiÃ³n</a>
             				</c:if>	  
             
             				<c:if test="${ not empty sessionScope.usuario_login }">
             					<span class="badge badge-pill badge-light mr-3">${sessionScope.usuario_login.nombre}</span>
-            					<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
+            					<a class="nav-link  btn btn-outline-light" href="logout">Cerrar SesiÃ³n</a>
             				</c:if>
 					
 							</ul>

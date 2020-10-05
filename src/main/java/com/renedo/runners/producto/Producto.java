@@ -1,7 +1,5 @@
 package com.renedo.runners.producto;
 
-import java.util.ArrayList;
-
 import com.renedo.runners.categorias.Categoria;
 import com.renedo.runners.modelo.ResumenUsuario;
 import com.renedo.runners.modelo.Usuario;

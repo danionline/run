@@ -8,15 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.renedo.runners.modelo.Usuario;
 import com.renedo.runners.modelo.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class RegistrarseController
  */
+
 @WebServlet("/registrarse")
 public class RegistrarseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final static Logger LOG = Logger.getLogger(RegistrarseController.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -60,10 +64,13 @@ public class RegistrarseController extends HttpServlet {
 				usu.setContrasena(cons);
 
 				try {
+
 					dao.insert(usu);
+					LOG.info("USUARIO GUARDADO" + usu);
 					mensaje = "Usuario guardado con exito";
 				} catch (Exception e) {
 
+					LOG.error(e);
 					mensaje = "Usuario no registrado, el nombre ya existe";
 				}
 
