@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.renedo.runners.categorias.Categoria;
 import com.renedo.runners.producto.Producto;
 import com.renedo.runners.producto.ProductoDAOImpl;
 
@@ -33,22 +32,6 @@ public class CrearProductosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		ProductoDAOImpl dao = ProductoDAOImpl.getInstance();
-
-		Producto prodid = new Producto();
-
-		try {
-
-			prodid = dao.getById(prodid.getId());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-
-			request.setAttribute("producto", prodid);
-			request.getRequestDispatcher("creareditarproducto.jsp").forward(request, response);
-		}
 	}
 
 	/**
@@ -60,7 +43,6 @@ public class CrearProductosController extends HttpServlet {
 		ProductoDAOImpl dao = ProductoDAOImpl.getInstance();
 
 		Producto producto = new Producto();
-		Categoria categoria = new Categoria();
 
 		String mensaje = "";
 
@@ -76,19 +58,20 @@ public class CrearProductosController extends HttpServlet {
 
 			producto.setNombre(nombre);
 			producto.setPrecio(precio);
-			producto.setImagen(imagen);
 
 			/// comprobar el ide del producto para saber si hay uno nuevo o modificarlo
 			if (producto.getId() == 0) {
 
 				dao.insert(producto);
 				mensaje = "Producto guardado con exito";
+				request.setAttribute("mensaje", mensaje);
 
 				/// modificar
 			} else {
 				dao.getById(producto.getId());
 				dao.update(producto);
 				mensaje = "producto esta editado con exito";
+
 			}
 
 		} catch (Exception e) {
@@ -96,14 +79,10 @@ public class CrearProductosController extends HttpServlet {
 			mensaje = "Lo sentimos pero hemos tenido una Excepcion " + e.getMessage();
 			e.printStackTrace();
 
-		} finally {
-
 			// enviar datos a la vista
 
-			request.setAttribute("mensaje", mensaje);
-
-			request.getRequestDispatcher("creareditarproducto.jsp").forward(request, response);
-
 		}
+		request.setAttribute(mensaje, "mensaje");
+		request.getRequestDispatcher("productos.jsp").forward(request, response);
 	}
 }

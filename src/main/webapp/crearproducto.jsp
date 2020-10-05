@@ -4,7 +4,7 @@
 
 
 
-<title>Crear Editar Producto</title>
+<title>Crear  Producto</title>
 
 		<jsp:include page="include/cabecera.jsp">
 			<jsp:param name="pagina" value="inicio" />
@@ -18,12 +18,12 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-"${producto}" 
+
 		<form action="crear-producto" method="post">
 			
 			<label for="textlabel"	class="col-sm-3 col-form-label">ID del Producto</label> 
 			
-			<input class="form-control" value="${producto}" type="text">
+			<input class="form-control" name="id" type="text" value="0" placeholder="ID del Producto">
 		
 		
 			<label for="textlabel"	class="col-sm-3 col-form-label">Nombre del Producto</label> 
@@ -34,14 +34,11 @@
 				 
 			<input class="form-control" name="precio" type="text" placeholder="Precio">
 				
-			<label for="textlabel" class="col-sm-3 col-form-label">Imagen</label> 
 			
-			<input	class="form-control" type="file" name="imagen" type="text" placeholder="Imagen">
-			<br>
 		
 			<button type="submit" class="btn btn-success mb-2">Crear Producto</button>
 			
-			<button type="submit" class="btn btn-primary mb-2">Editar Producto</button>
+			
 			</form>
 			
 	

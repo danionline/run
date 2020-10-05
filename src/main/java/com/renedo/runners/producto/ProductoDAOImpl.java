@@ -64,8 +64,8 @@ public class ProductoDAOImpl implements ProductoDAO {
 	private final String SQL_CATEGORIA = "SELECT p.id, p.nombre, p.precio , p.imagen ,c.nombrecategoria ,p.id_categoria\n"
 			+ "FROM producto p, categoria c Where p.id_categoria =c.id AND c.id=? LIMIT ?;";
 
-	private final String SQL_INSERT = "INSERT INTO producto (nombre, imagen, precio ,id_usuario ,id, id_categoria ) VALUES (? , ?,?,? ,? , ? );";
-	private final String SQL_UPDATE = " UPDATE producto SET nombre = ?, imagen = ?, precio = ?,id_usario, id, id_categoria WHERE id=? ; ";
+	private final String SQL_INSERT = "INSERT INTO producto (id , nombre , precio   ) VALUES (? ,?, ?);";
+	private final String SQL_UPDATE = " UPDATE producto SET nombre = ?, precio = ? WHERE id=? ; ";
 
 	private final String SQL_DELETE = " DELETE FROM producto WHERE id = ? ; ";
 
@@ -207,12 +207,11 @@ public class ProductoDAOImpl implements ProductoDAO {
 
 		) {
 
-			pst.setString(1, pojo.getNombre());
-			pst.setString(2, pojo.getImagen());
+			pst.setString(2, pojo.getNombre());
+
 			pst.setFloat(3, pojo.getPrecio());
-			pst.setInt(4, pojo.getUsuario().getId());
-			pst.setInt(5, pojo.getId());
-			pst.setInt(6, pojo.getCategoriaId());
+			pst.setInt(1, pojo.getId());
+
 			int affectedRows = pst.executeUpdate();
 
 			if (affectedRows == 1) {
