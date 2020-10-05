@@ -15,6 +15,24 @@ import com.renedo.runners.usuario.UsuarioDaoImpl;
 
 /**
  * Servlet implementation class RegistrarseController
+ * 
+ * parametros de entrada nombre String conse String
+ * 
+ * parametros de entrada consedos String
+ * 
+ * 
+ * 
+ * Es un Servlet que registra un nombre una contraseña, comprueba la contraseña,
+ * lo inserta en la base de datos con el dao, nos dirige a la clase de la WEBapp
+ * registrarse.jsp.
+ * 
+ * 
+ * 
+ * Si da una excepcion nos redirige a la clase login.jsp
+ * 
+ * 
+ * Es un controlador que viene de la clase registrarse.jsp, donde esta el mapa
+ * con el envio post /registrarse.
  */
 
 @WebServlet("/registrarse")

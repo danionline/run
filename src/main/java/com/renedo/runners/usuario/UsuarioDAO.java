@@ -10,7 +10,7 @@ public interface UsuarioDAO extends CrudAble<Usuario> {
 	 * Busca alumnos que contengan la palabraBuscada
 	 * 
 	 * @param palabraBuscada palabra a buscar
-	 * @return ArrayList<Alumno>
+	 * @return {@code ArrayList<Usuario>}
 	 * 
 	 *         Ej: si palabraBuscada = "a" <br>
 	 *         lista [ "ander", "pepe", "manolo"] <br>
@@ -26,8 +26,7 @@ public interface UsuarioDAO extends CrudAble<Usuario> {
 	 * Busca si existe el usuario en la base datsos
 	 * 
 	 * @param nombre   String nombre del usuario
-	 * @param password String contraseña para acceder, cuidado que esta cifrada en
-	 *                 MD5
+	 * @param password String contraseña para acceder
 	 * @return Usuario con datos si lo encuentra, si no existe retorna null
 	 */
 	Usuario existe(String nombre, String password);
@@ -35,7 +34,7 @@ public interface UsuarioDAO extends CrudAble<Usuario> {
 	/**
 	 * Inserta si no existe el usuario en la base de datos sino lanza una excepcion
 	 * 
-	 * @param Usuario pojo
+	 * @param pojo Usuario
 	 * 
 	 * @return Usuario con datos si lo encuentra, si no existe retorna null
 	 */
@@ -45,7 +44,7 @@ public interface UsuarioDAO extends CrudAble<Usuario> {
 	/**
 	 * Modifica si existe el usuario en la base de datos sino lanza una excepcion
 	 * 
-	 * @param Usuario pojo
+	 * @param pojo Usuario
 	 * 
 	 * @return Usuario con datos si lo encuentra, si no existe retorna null
 	 */

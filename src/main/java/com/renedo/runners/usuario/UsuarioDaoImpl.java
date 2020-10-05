@@ -19,7 +19,7 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 	// exceuteQuerys => ResultSet
 	static final String SQL_GET_ALL_BY_NOMBRE = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id WHERE nombre LIKE ? LIMIT 500 ;   ";
 	static final String SQL_GET_ALL = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id ORDER BY u.id DESC LIMIT 500 ; ";
-	static final String SQL_GET_BY_ID = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id WHERE u.id = ? ; ";
+
 	static final String SQL_EXISTE = " SELECT u.id, u.nombre, contrasenia, id_rol, r.nombre AS 'nombre_rol' FROM usuario AS u INNER JOIN rol AS r ON u.id_rol = r.id WHERE u.nombre = ? AND contrasenia = ? ; ";
 
 	// executeUpdate => int
@@ -60,35 +60,6 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 		}
 
 		return usuarios;
-	}
-
-	@Override
-	public Usuario getById(int id) throws Exception {
-
-		Usuario usuario = new Usuario();
-
-		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(SQL_GET_BY_ID);
-
-		) {
-
-			pst.setInt(1, id);
-			LOG.debug(pst);
-			try (ResultSet rs = pst.executeQuery()) {
-
-				if (rs.next()) {
-					usuario = mapper(rs);
-				} else {
-					throw new Exception("Usuario no encontrado id = " + id);
-				}
-
-			} // 2º try
-
-		} catch (Exception e) {
-			LOG.error(e);
-		}
-
-		return usuario;
 	}
 
 	@Override
@@ -236,6 +207,12 @@ public class UsuarioDaoImpl implements UsuarioDAO {
 
 	@Override
 	public ArrayList<Producto> getProducto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Usuario getById(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

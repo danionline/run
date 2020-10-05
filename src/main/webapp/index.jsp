@@ -92,6 +92,7 @@
  			</STYLE>
 			<p style center" >Web basada en deportes y para el deporte, make of JAVA and BOOTSRAP.</p>
 		</div>
+		<a href=doc/index.html>Documentacion RunnerS</a>
 	</div>
 </div>
 <%@include file="include/pie.jsp"%>
