@@ -14,25 +14,32 @@ import com.renedo.runners.usuario.Usuario;
 import com.renedo.runners.usuario.UsuarioDaoImpl;
 
 /**
+ * <p>
  * Servlet implementation class RegistrarseController
+ * </p>
+ * <dl>
+ * <dt>parametros de entrada</dt>
+ * <dd>nombre String</dd>
+ * <dd>conse String</dd>
+ * <dd>consedos String</dd>
+ * </dl>
  * 
- * parametros de entrada nombre String conse String
- * 
- * parametros de entrada consedos String
- * 
- * 
- * 
- * Es un Servlet que registra un nombre una contraseña, comprueba la contraseña,
- * lo inserta en la base de datos con el dao, nos dirige a la clase de la WEBapp
- * registrarse.jsp.
+ * <dl>
+ * <dt>Explicacion</dt>
+ * <dd>Es un Servlet que registra un nombre una contraseña, comprueba la
+ * contraseña</dd>,
+ * <dd>lo inserta en la base de datos con el dao, nos dirige a la clase de la
+ * WEBapp</dd>
+ * <dd>registrarse.jsp.</dd>
  * 
  * 
  * 
- * Si da una excepcion nos redirige a la clase login.jsp
+ * <dd>Si da una excepcion nos redirige a la clase login.jsp
  * 
  * 
- * Es un controlador que viene de la clase registrarse.jsp, donde esta el mapa
- * con el envio post /registrarse.
+ * <dd>Es un controlador que viene de la clase registrarse.jsp, donde esta el
+ * mapa con el envio post desde la vista /registrarse.</dd>
+ * </dl>
  */
 
 @WebServlet("/registrarse")
