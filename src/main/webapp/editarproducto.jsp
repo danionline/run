@@ -19,20 +19,22 @@
 			</button>
 		</div>
 
+
+
 		<form action="crear-producto" method="post">
 			
-			<label for="textlabel"	class="col-sm-3 col-form-label">ID del Producto</label> 
 			
-			<input class="form-control" value="${productos.id}" type="text">
+			
+			<input class="form-control" name="id" value="${producto.id}" type="text">
 		
 		
 			<label for="textlabel"	class="col-sm-3 col-form-label">Nombre del Producto</label> 
 			
-			<input class="form-control" name="nombre" type="text" placeholder="Nombre del Producto">
+			<input class="form-control" name="nombre" value="${producto.nombre}" type="text" placeholder="Nombre del Producto">
 			
 			<label for="textlabel" class="col-sm-3 col-form-label">Precio</label>
 				 
-			<input class="form-control" name="precio" type="text" placeholder="Precio">
+			<input class="form-control" name="precio" value="${producto.precio}" type="text" placeholder="Precio">
 				
 			
 			

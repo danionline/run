@@ -54,10 +54,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 	private final String SQL_GET_ALL = SELECT_CAMPOS + FROM_INNER_JOIN + " AND fecha_validar IS NOT NULL "
 			+ " ORDER BY p.id DESC LIMIT 500; ";
 
-	private final String SQL_GET_BY_ID = " SELECT " + "	 p.id     'id', " + "	 p.nombre 'nombre', " + "	 precio, "
-			+ "	 imagen, " + "	 c.id     'id_categoria', " + "	 c.nombre 'nombre_categoria'	"
-			+ " FROM producto p , categoria c " + " WHERE p.id_categoria  = c.id AND p.id = ? ; ";
-
+	private final String SQL_GET_BY_ID = "SELECT p.id  , p.nombre, precio,  imagen, c.id  ,  c.nombrecategoria  FROM producto p , categoria c  WHERE p.id_categoria  = c.id AND p.id = ? ;\n";
 	// excuteUpdate => int numero de filas afectadas
 	// TODO faltan campos imagen y precio
 
@@ -208,7 +205,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 
 			pst.setString(2, pojo.getNombre());
 
-			pst.setFloat(3, pojo.getPrecio());
+			pst.setInt(3, pojo.getPrecio());
 			pst.setInt(1, pojo.getId());
 
 			int affectedRows = pst.executeUpdate();
@@ -245,13 +242,10 @@ public class ProductoDAOImpl implements ProductoDAO {
 		) {
 
 			pst.setString(1, pojo.getNombre());
-			pst.setString(2, pojo.getImagen());
-			pst.setFloat(3, pojo.getPrecio());
+			pst.setInt(2, pojo.getPrecio());
+			pst.setInt(3, pojo.getId());
 
 			int affectedRows = pst.executeUpdate();
-			if (affectedRows != 1) {
-				throw new Exception("No se puede podificar el registro con id=" + pojo.getId());
-			}
 
 		}
 
@@ -269,7 +263,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 		p.setId(rs.getInt("id"));
 		p.setImagen(rs.getString("imagen"));
 		p.setNombre(rs.getString("nombre"));
-		p.setPrecio(rs.getFloat("precio"));
+		p.setPrecio(rs.getInt("precio"));
 		Categoria g = new Categoria();
 		g.setId(rs.getInt("id"));
 		g.setNombre(rs.getString("nombrecategoria"));

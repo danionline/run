@@ -47,7 +47,7 @@
 					
 						<a href="crearproducto.jsp" class="btn btn-xs btn-success">[+] <span class="glyphicon glyphicon-registration-mark"></span></a>
 						
-						<a href="editarproducto.jsp?id=${p.id}" class="btn btn-xs btn-info">[=] <span class="glyphicon glyphicon-registration-mark"></span></a>
+						<a href="crear-producto?id=${p.id}" class="btn btn-xs btn-info">[=] <span class="glyphicon glyphicon-registration-mark"></span></a>
 						<a href="producto-eliminar?id=${p.id}"  onclick="confirmar('${p.nombre}')" ><i class="btn btn-xs btn-warning">[-]</i> <span class="glyphicon glyphicon-registration-mark"></span></a>					
 						
 					</td>

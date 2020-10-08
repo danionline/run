@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.renedo.runners.producto.Producto;
+import com.renedo.runners.producto.ProductoDAO;
 import com.renedo.runners.producto.ProductoDAOImpl;
 
 /**
@@ -18,6 +19,8 @@ import com.renedo.runners.producto.ProductoDAOImpl;
 @WebServlet("/crear-producto")
 public class CrearProductosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final ProductoDAO DAO = ProductoDAOImpl.getInstance();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,6 +36,21 @@ public class CrearProductosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		Producto prod = new Producto();
+		String i = request.getParameter("id");
+		int idi = Integer.parseInt(i);
+
+		try {
+
+			prod = DAO.getById(idi);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		request.setAttribute("producto", prod);
+		request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
 	}
 
 	/**
@@ -41,7 +59,6 @@ public class CrearProductosController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProductoDAOImpl dao = ProductoDAOImpl.getInstance();
 
 		Producto producto = new Producto();
 
@@ -50,22 +67,24 @@ public class CrearProductosController extends HttpServlet {
 			/// crear producto
 
 			String nombre = request.getParameter("nombre");
-			float precio = Float.parseFloat(request.getParameter("precio"));
+			int precio = Integer.parseInt(request.getParameter("precio"));
+			int id = Integer.parseInt(request.getParameter("id"));
 
 			/// rellenar el objeto con los datos del formulario
 
+			producto.setId(id);
 			producto.setNombre(nombre);
 			producto.setPrecio(precio);
 
 			/// comprobar el ide del producto para saber si hay uno nuevo o modificarlo
 			if (producto.getId() == 0) {
 
-				dao.insert(producto);
+				DAO.insert(producto);
 
 				/// modificar
 			} else {
-				dao.getById(producto.getId());
-				dao.update(producto);
+
+				DAO.update(producto);
 
 			}
 
@@ -77,7 +96,7 @@ public class CrearProductosController extends HttpServlet {
 
 		} finally {
 			ArrayList<Producto> productos = new ArrayList<Producto>();
-			productos = dao.getAll();
+			productos = DAO.getAll();
 			request.setAttribute("productos", productos);
 			request.getRequestDispatcher("productos.jsp").forward(request, response);
 		}

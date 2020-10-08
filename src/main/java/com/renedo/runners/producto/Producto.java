@@ -9,7 +9,8 @@ public class Producto {
 	private int id;
 	private String nombre;
 	private String imagen;
-	private float precio;
+	private int precio;
+
 	private Categoria categoria;
 	private Usuario usuario;
 	private ResumenUsuario resumen;
@@ -20,6 +21,10 @@ public class Producto {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 
 	public Producto() {
@@ -33,7 +38,7 @@ public class Producto {
 		this.resumen = new ResumenUsuario();
 	}
 
-	public Producto(int id, String nombre, String imagen, float precio, Categoria categoria, Usuario usuario,
+	public Producto(int id, String nombre, String imagen, int precio, Categoria categoria, Usuario usuario,
 			ResumenUsuario resumen) {
 		super();
 		this.id = id;
@@ -53,7 +58,7 @@ public class Producto {
 		this.resumen = resumen;
 	}
 
-	public Producto(int id, String nombre, String imagen, float precio, Categoria categoria, Usuario usuario) {
+	public Producto(int id, String nombre, String imagen, int precio, Categoria categoria, Usuario usuario) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -92,12 +97,8 @@ public class Producto {
 		this.imagen = imagen;
 	}
 
-	public float getPrecio() {
+	public int getPrecio() {
 		return precio;
-	}
-
-	public void setPrecio(float precio) {
-		this.precio = precio;
 	}
 
 	public Categoria getCategoria() {
