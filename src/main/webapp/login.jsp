@@ -22,7 +22,7 @@
 			</select>
 		</div>
 		
-		<input type="submit" value="Iniciar Sesión" class="btn btn-primary btn-block">
+		<input type="submit" value="Iniciar Sesión" class="btn btn-warning btn-block">
 	
 	</form>
 	

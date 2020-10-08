@@ -24,6 +24,31 @@
 </jsp:include>
   <body>
 
+
+ <div class="col-md-2">
+						
+					
+							<ul class="navbar-nav">
+								<li class="nav-item"  >
+					
+					
+							<c:if test="${ empty sessionScope.usuario_login }">
+            	 				 <a class="nav-link  btn btn-outline-warning mb-4" href="login.jsp">Iniciar Sesión</a>
+            				</c:if>	  
+            
+            				<c:if test="${ not empty sessionScope.usuario_login }">
+            					<span class="badge badge-pill badge-light mr-3">${sessionScope.usuario_login.nombre}</span>
+            					<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
+            				</c:if>
+					
+							</ul>
+							</div>
+					
+  
+
+
+
+
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
