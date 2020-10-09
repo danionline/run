@@ -21,9 +21,8 @@
 
 		<form action="crear-producto" method="post">
 			
-			<label for="textlabel"	class="col-sm-3 col-form-label">ID del Producto</label> 
 			
-			<input class="form-control" name="id" type="text" value="0" placeholder="ID del Producto">
+			<input class="form-control" name="id" hidden="hidden" type="text" value="0" placeholder="ID del Producto">
 		
 		
 			<label for="textlabel"	class="col-sm-3 col-form-label">Nombre del Producto</label> 

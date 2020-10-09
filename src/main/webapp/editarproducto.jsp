@@ -25,7 +25,7 @@
 			
 			
 			
-			<input class="form-control" name="id" value="${producto.id}" type="text">
+			<input class="form-control" name="id" hidden = "hidden" value="${producto.id}" type="text">
 		
 		
 			<label for="textlabel"	class="col-sm-3 col-form-label">Nombre del Producto</label> 
